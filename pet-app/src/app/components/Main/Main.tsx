@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home } from "../Home/Home";
-import { Cats } from "../Breeds/Cats";
-import { Dogs } from "../Breeds/Dogs";
+import { Layout } from "../Layout/Layout";
+import { Home } from "../../pages/Home";
+import { Cats } from "../../pages/Cats";
+import { Dogs } from "../../pages/Dogs";
 
 export const Main = () => {
   const notFound = <div>404 Not Found</div>;
   return (
-    <div>
+    <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cat-breeds" element={<Cats />} />
@@ -19,6 +20,6 @@ export const Main = () => {
         <Route path="/rabbit/:id/*" element={null} />
         <Route path="*" element={notFound} />
       </Routes>
-    </div>
+    </Layout>
   );
 };
