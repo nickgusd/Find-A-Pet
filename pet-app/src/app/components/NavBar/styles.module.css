@@ -2,4 +2,55 @@
     height: 70px;
     position: sticky;
     z-index: 100;
+    padding: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftWrapper {
+    display: flex;
+    flex-direction: flex-start;
+    height: 100%;
+    align-items: center;
+    gap: 24px;
+}
+
+.leftWrapper > div > img {
+    width: 250px;
+    height: 95px;
+}
+
+.leftNavItems {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.leftNavItems > a {
+    text-decoration: none;
+    color: #525252;
+    font-weight: bold;
+}
+
+.leftNavItems > a:hover {
+    color: #00a7e1;
+}
+
+.rightWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.rightWrapper > a {
+    text-decoration: none;
+    color: #525252;
+    font-weight: bold;
+}
+
+.rightWrapper > a:hover {
+    color: #00a7e1;
 }
