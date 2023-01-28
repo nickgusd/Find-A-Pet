@@ -3,7 +3,7 @@ import counterReducer, {
   // increment,
   // decrement,
   // incrementByAmount,
-} from "./counterSlice";
+} from "./animalsSlice";
 
 describe("counter reducer", () => {
   const initialState: AnimalState = {

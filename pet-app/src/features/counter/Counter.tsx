@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { incrementAsync, selectCount } from "./counterSlice";
+import { getAnimals, selectAnimals } from "../../app/slice/animalsSlice";
 import styles from "./Counter.module.css";
 
 import { getOAuth } from "../../app/api/animalsAPI";
 
 export function Counter() {
-  const count = useAppSelector(selectCount);
+  const animals = useAppSelector(selectAnimals);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState("2");
 
@@ -50,7 +50,7 @@ export function Counter() {
         <button
           className={styles.asyncButton}
           onClick={() =>
-            dispatch(incrementAsync("https://api.petfinder.com/v2/animals/"))
+            dispatch(getAnimals("https://api.petfinder.com/v2/animals/"))
           }
         >
           Add Async
