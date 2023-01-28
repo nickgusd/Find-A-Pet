@@ -11,6 +11,8 @@ export const Main = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/breeds" element={null} />
+        <Route path="/organizations" element={null} />
         <Route path="/cat-breeds" element={<Cats />} />
         <Route path="/dog-breeds" element={<Dogs />} />
         <Route path="/cat-breeds/*" element={null} />
