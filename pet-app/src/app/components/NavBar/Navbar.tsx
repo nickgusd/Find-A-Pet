@@ -10,9 +10,9 @@ export const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.leftWrapper}>
-        <div>
+        <Link to="/">
           <img src={logo} alt="logo" />
-        </div>
+        </Link>
         <div className={styles.leftNavItems}>
           {leftNavItems.map((item, idx) => (
             <Link key={idx} to={`/${item.toLocaleLowerCase()}`}>
