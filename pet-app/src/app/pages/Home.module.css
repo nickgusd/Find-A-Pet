@@ -6,7 +6,6 @@
 .container > div > img {
     width: 100%;
     height: 100%;
-    opacity: .9;
 }
 
 .heroWrapper {
@@ -16,5 +15,21 @@
 .searchWrapper {
     position: absolute;
     top: 60px;
-    left: 35%;
+    left: calc(50% - 230px);
+}
+
+.header {
+    position: absolute;
+    color: white;
+    top: 220px;
+    left: calc(50% - 320px);
+}
+
+.header > h1 {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.header > p {
+    font-size: 28px;
 }
