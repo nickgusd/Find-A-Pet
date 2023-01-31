@@ -1,9 +1,15 @@
-import dogBreeds from "../config/dogbreeds.json"
+import dogBreeds from "../config/dogbreeds.json";
+import catBreeds from "../config/catbreeds.json";
 
-const dogBreedsArr = dogBreeds.breeds.map(item =>{
-  return  item.name.toLowerCase();
+const dogBreedsArr = dogBreeds.breeds.map((item) => {
+  return { name: item.name.toLowerCase(), type: "dog" };
 });
 
+const catBreedsArr = catBreeds.breeds.map((item) => {
+  return { name: item.name.toLowerCase(), type: "cat" };
+});
+
+const allBreeds = [...dogBreedsArr, ...catBreedsArr];
 
 export const getSearchParams = (params: any) => {
   const puppyTerms = ["puppy", "puppies", "pups"];
@@ -28,19 +34,36 @@ export const getSearchParams = (params: any) => {
   }
 
   const recursive = (arr1: any[], str: string): any => {
-    const filter = (arr1.filter(item => item.includes(str.toLowerCase()) || str.toLowerCase().includes(item)))
+    const filter = arr1.filter(
+      (item) =>
+        item.name.includes(str.toLowerCase()) ||
+        str.toLowerCase().includes(item.name)
+    );
     if (filter.length) {
-      return filter[0]
+      return filter[0];
     } else {
-      let newStr = str.slice(0, str.length - 1)
-      return recursive(dogBreedsArr, newStr)
+      let newStr = str.slice(0, str.length - 1);
+      return recursive(arr1, newStr);
     }
+  };
+
+  const exactMatch = allBreeds.find(
+    (item) => item.name === params.type.toLowerCase()
+  );
+
+  if (exactMatch) {
+    return { ...params, type: exactMatch.type, breed: exactMatch.name };
   }
 
-  if (recursive(dogBreedsArr, params.type.toLowerCase())) {
-      return { ...params, type: "dog", breed: recursive(dogBreedsArr, params.type.toLowerCase())};
+  const recursiveSearch = recursive(allBreeds, params.type.toLowerCase());
+
+  if (recursiveSearch) {
+    return {
+      ...params,
+      type: recursiveSearch.type,
+      breed: recursiveSearch.name,
+    };
   }
 
   return params;
 };
- 
