@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import { Navbar } from "../NavBar/Navbar";
 
 import styles from "./styles.module.css";
@@ -7,8 +8,12 @@ export interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+  const location = useLocation();
+  const isSearch =
+    location.pathname === "/search" ? styles.searchLayout : styles.container;
+
   return (
-    <div className={styles.container}>
+    <div className={`${isSearch}`}>
       <Navbar />
       {children}
     </div>

@@ -1,6 +1,14 @@
 .container {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.searchLayout {
+    width: 100vw;
+    height: 100vh;
     padding: 0px;
     margin: 0px;
 }

@@ -53,5 +53,6 @@ export const AnimalsSlice = createSlice({
 export const { setAnimals } = AnimalsSlice.actions;
 
 export const selectAnimals = (state: RootState) => state.animals.value;
+export const loadingAnimals = (state: RootState) => state.animals.status;
 
 export default AnimalsSlice.reducer;
