@@ -1,0 +1,21 @@
+.container {
+    padding: 24px;
+    position: relative;
+}
+
+.animalsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 14px;
+    row-gap: 24px;
+    padding: 24px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.loader {
+   position: absolute;
+   left: calc(50% - 32px);
+   top: calc(50% - 32px);
+}

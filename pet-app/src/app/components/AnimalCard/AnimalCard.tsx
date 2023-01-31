@@ -5,9 +5,17 @@ export interface AnimalCardProps {
   name: string;
   age: string;
   breed: string;
+  distance: number;
 }
 
-export const AnimalCard = ({ src, age, breed, name }: AnimalCardProps) => {
+export const AnimalCard = ({
+  src,
+  age,
+  breed,
+  name,
+  distance,
+}: AnimalCardProps) => {
+  if (!src) return null;
   return (
     <div className={styles.container}>
       <img src={src} alt="animal" />
@@ -19,6 +27,7 @@ export const AnimalCard = ({ src, age, breed, name }: AnimalCardProps) => {
             <li>{breed}</li>
           </ul>
         </div>
+        {distance && <div>{distance} miles away</div>}
       </div>
     </div>
   );

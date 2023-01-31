@@ -11,7 +11,7 @@ const Search = ({ onChangeSearch, onChangeLocation }: SearchProps) => (
     action={
       <Input
         size="large"
-        placeholder="Enter City, State, or Zip"
+        placeholder="Enter Zipcode"
         onChange={onChangeLocation}
       />
     }

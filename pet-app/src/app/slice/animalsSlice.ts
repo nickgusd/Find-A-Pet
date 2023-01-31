@@ -1,15 +1,17 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-// import { fetchCount, fetchAnimals } from './counterAPI';
 import { getOAuth } from "../api/animalsAPI";
 
 export interface AnimalState {
-  value: object;
+  value: any;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: AnimalState = {
-  value: [],
+  value: {
+    animals: [],
+    pagination: {}
+  },
   status: "idle",
 };
 
@@ -29,16 +31,10 @@ export const getAnimals = createAsyncThunk(
 export const AnimalsSlice = createSlice({
   name: "animals",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    setAnimals: (state, action) => {
-      console.log("payload", action.payload);
+    setAnimals: (state, action: PayloadAction<any>) => {
       state.value = action.payload;
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    // incrementByAmount: (state, action: PayloadAction<string>) => {
-    //   state.value += action.payload;
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -57,5 +53,6 @@ export const AnimalsSlice = createSlice({
 export const { setAnimals } = AnimalsSlice.actions;
 
 export const selectAnimals = (state: RootState) => state.animals.value;
+export const loadingAnimals = (state: RootState) => state.animals.status;
 
 export default AnimalsSlice.reducer;

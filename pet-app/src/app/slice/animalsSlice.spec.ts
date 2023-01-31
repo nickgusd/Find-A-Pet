@@ -7,6 +7,7 @@ import counterReducer, {
 
 describe("counter reducer", () => {
   const initialState: AnimalState = {
+    // animals: [],
     value: [],
     status: "idle",
   };
