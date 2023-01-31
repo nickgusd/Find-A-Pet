@@ -8,6 +8,7 @@ export interface AnimalCardProps {
 }
 
 export const AnimalCard = ({ src, age, breed, name }: AnimalCardProps) => {
+  if (!src) return null;
   return (
     <div className={styles.container}>
       <img src={src} alt="animal" />

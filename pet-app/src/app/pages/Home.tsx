@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import Search from "../components/Search/Search";
 import { getAnimals } from "../../app/slice/animalsSlice";
 import { useAppDispatch } from "../../app/hooks";
+import { getSearchParams } from "../utils/search";
 
 import hero from "../assets/dog-cat-hero.png";
 import styles from "./Home.module.css";
@@ -13,11 +14,11 @@ export const Home = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
-  const params = { type: searchValue, location: locationValue };
-
-  useEffect(() => {
-    dispatch(getAnimals("https://api.petfinder.com/v2/animals/"));
-  }, [dispatch]);
+  const params = {
+    type: searchValue,
+    location: locationValue,
+    page: "1",
+  };
 
   const handleChangeSearch = (
     event: React.FormEvent<HTMLInputElement>
@@ -33,9 +34,15 @@ export const Home = () => {
 
   const onSearch = (event: React.KeyboardEvent): void => {
     if (event.key === "Enter") {
+      dispatch(
+        getAnimals(
+          "https://api.petfinder.com/v2/animals" +
+            `?${createSearchParams(getSearchParams(params))}`
+        )
+      );
       navigate({
         pathname: "/search",
-        search: `?${createSearchParams(params)}`,
+        search: `?${createSearchParams(getSearchParams(params))}`,
       });
     }
   };
