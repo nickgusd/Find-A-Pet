@@ -14,6 +14,7 @@ export const Home = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
+  const [noLocation, setNoLocation] = useState(false);
   const params = {
     type: searchValue,
     location: locationValue,
@@ -34,6 +35,10 @@ export const Home = () => {
 
   const onSearch = (event: React.KeyboardEvent): void => {
     if (event.key === "Enter") {
+      if (params.location === "") {
+        setNoLocation(true);
+        return;
+      }
       dispatch(
         getAnimals(
           "https://api.petfinder.com/v2/animals" +
@@ -53,6 +58,7 @@ export const Home = () => {
         <img src={hero} alt="hero" />
         <div className={styles.searchWrapper} onKeyDown={onSearch}>
           <Search
+            noLocation={noLocation}
             onChangeSearch={handleChangeSearch}
             onChangeLocation={handleChangeLocation}
           />
