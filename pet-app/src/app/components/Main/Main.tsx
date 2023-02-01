@@ -5,6 +5,7 @@ import { Home } from "../../pages/Home";
 import { Cats } from "../../pages/Cats";
 import { Dogs } from "../../pages/Dogs";
 import { Search } from "../../pages/Search";
+import { Breeds } from "../../pages/Breeds";
 
 export const Main = () => {
   const notFound = <div>404 Not Found</div>;
@@ -13,7 +14,7 @@ export const Main = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/breeds" element={null} />
+        <Route path="/breeds" element={<Breeds />} />
         <Route path="/organizations" element={null} />
         <Route path="/cat-breeds" element={<Cats />} />
         <Route path="/dog-breeds" element={<Dogs />} />
