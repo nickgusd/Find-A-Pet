@@ -4,14 +4,20 @@ import { Input } from "semantic-ui-react";
 export interface SearchProps {
   onChangeSearch: ReactEventHandler;
   onChangeLocation: ReactEventHandler;
+  noLocation: boolean;
 }
 
-const Search = ({ onChangeSearch, onChangeLocation }: SearchProps) => (
+const Search = ({
+  onChangeSearch,
+  onChangeLocation,
+  noLocation,
+}: SearchProps) => (
   <Input
     action={
       <Input
+        error={noLocation ? true : false}
         size="large"
-        placeholder="Enter Zipcode"
+        placeholder={noLocation ? "Location is required" : "Enter Zipcode"}
         onChange={onChangeLocation}
       />
     }

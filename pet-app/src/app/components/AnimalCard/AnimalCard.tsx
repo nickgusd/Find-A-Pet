@@ -27,7 +27,7 @@ export const AnimalCard = ({
             <li>{breed}</li>
           </ul>
         </div>
-        {distance && <div>{distance} miles away</div>}
+        {distance ? <div>{distance} miles away</div> : null}
       </div>
     </div>
   );
