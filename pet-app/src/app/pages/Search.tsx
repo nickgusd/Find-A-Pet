@@ -1,15 +1,57 @@
-import { useAppSelector } from "../hooks";
-import { selectAnimals, loadingAnimals } from "../slice/animalsSlice";
+import { useState, useEffect, Key } from "react";
+import { useNavigate, useLocation } from "react-router";
+import { createSearchParams } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import {
+  selectAnimals,
+  loadingAnimals,
+  getAnimals,
+} from "../slice/animalsSlice";
+import queryString from "query-string";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
 import LoaderComponent from "../components/Loader/Loader";
+import PaginationComponent from "../components/PaginationComponent/Pagination";
 
 import styles from "./Search.module.css";
-import { Key } from "react";
 
 export const Search = () => {
-  const { animals } = useAppSelector(selectAnimals);
+  const { animals, pagination } = useAppSelector(selectAnimals);
   const isLoading = useAppSelector(loadingAnimals);
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const params = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (!animals.length) {
+      setPage(Number(params.page));
+      dispatch(
+        getAnimals("https://api.petfinder.com/v2/animals" + location.search)
+      );
+    }
+  }, []);
+
+  const onPageChange = (e: any, { activePage }: any): void => {
+    setPage(activePage);
+    dispatch(
+      getAnimals(
+        "https://api.petfinder.com/v2/animals" +
+          `?${createSearchParams({
+            ...params,
+            page: activePage,
+          })}`
+      )
+    );
+    navigate({
+      pathname: "/search",
+      search: `?${createSearchParams({
+        ...params,
+        page: activePage,
+      })}`,
+    });
+  };
 
   if (isLoading === "loading") {
     return (
@@ -43,6 +85,13 @@ export const Search = () => {
               />
             )
           )}
+      </div>
+      <div className={styles.pagination}>
+        <PaginationComponent
+          totalPages={pagination.total_pages}
+          onChange={onPageChange}
+          activePage={page}
+        />
       </div>
     </div>
   );
