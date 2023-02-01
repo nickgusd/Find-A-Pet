@@ -19,3 +19,9 @@
    left: calc(50% - 32px);
    top: calc(50% - 32px);
 }
+
+.pagination {
+    padding: 24px;
+    width: 70%;
+    margin: 0 auto;
+}
