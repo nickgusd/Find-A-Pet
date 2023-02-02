@@ -1,6 +1,8 @@
 .container {
     padding: 24px;
     position: relative;
+    display: flex;
+    /* background-color: #f1f1f1; */
 }
 
 .animalsGrid {
@@ -10,8 +12,6 @@
     column-gap: 14px;
     row-gap: 24px;
     padding: 24px;
-    width: 70%;
-    margin: 0 auto;
 }
 
 .loader {
@@ -24,4 +24,14 @@
     padding: 24px;
     width: 70%;
     margin: 0 auto;
+}
+
+.gridWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarWrapper {
+    padding: 24px;
+    height: 100%;
 }

@@ -13,6 +13,8 @@ export const Main = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={null} />
+        <Route path="/login" element={null} />
         <Route path="/search" element={<Search />} />
         <Route path="/breeds" element={<Breeds />} />
         <Route path="/organizations" element={null} />

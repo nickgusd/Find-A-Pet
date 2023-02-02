@@ -10,6 +10,7 @@ import {
 import queryString from "query-string";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
+import { FilterBar } from "../components/FilterBar/FilterBar";
 import LoaderComponent from "../components/Loader/Loader";
 import PaginationComponent from "../components/PaginationComponent/Pagination";
 
@@ -63,35 +64,40 @@ export const Search = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.animalsGrid}>
-        {animals.length > 0 &&
-          animals.map(
-            (item: {
-              breeds: any;
-              photos: any;
-              id: Key | null | undefined;
-              name: string;
-              breed: string;
-              age: string;
-              distance: number;
-            }) => (
-              <AnimalCard
-                key={item.id}
-                name={item.name}
-                breed={item.breeds.primary}
-                age={item.age}
-                src={item.photos[0]?.large}
-                distance={Math.floor(item.distance)}
-              />
-            )
-          )}
+      <div className={styles.sidebarWrapper}>
+        <FilterBar />
       </div>
-      <div className={styles.pagination}>
-        <PaginationComponent
-          totalPages={pagination.total_pages}
-          onChange={onPageChange}
-          activePage={page}
-        />
+      <div className={styles.gridWrapper}>
+        <div className={styles.animalsGrid}>
+          {animals.length > 0 &&
+            animals.map(
+              (item: {
+                breeds: any;
+                photos: any;
+                id: Key | null | undefined;
+                name: string;
+                breed: string;
+                age: string;
+                distance: number;
+              }) => (
+                <AnimalCard
+                  key={item.id}
+                  name={item.name}
+                  breed={item.breeds.primary}
+                  age={item.age}
+                  src={item.photos[0]?.large}
+                  distance={Math.floor(item.distance)}
+                />
+              )
+            )}
+        </div>
+        <div className={styles.pagination}>
+          <PaginationComponent
+            totalPages={pagination.total_pages}
+            onChange={onPageChange}
+            activePage={page}
+          />
+        </div>
       </div>
     </div>
   );
