@@ -17,7 +17,7 @@ const Search = ({
       <Input
         error={noLocation ? true : false}
         size="large"
-        placeholder={noLocation ? "Location is required" : "Enter Zipcode"}
+        placeholder={noLocation ? "Zipcode is required" : "Enter Zipcode"}
         onChange={onChangeLocation}
       />
     }
