@@ -1,4 +1,5 @@
-// Get OAuth token
+// Get OAuth token and fetch data
+
 export const getOAuth = async function (url: RequestInfo) {
   const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
     method: "POST",
@@ -19,15 +20,16 @@ export const getOAuth = async function (url: RequestInfo) {
     Authorization: `Bearer ${token.access_token}`,
   };
 
-  async function fetchAnimals(request: RequestInfo): Promise<any> {
-    const config: RequestInit = {
-      method: "GET",
-      headers,
-    };
+  const config: RequestInit = {
+    method: "GET",
+    headers,
+  };
+
+  async function fetchData(request: RequestInfo): Promise<any> {
     const response = await fetch(request, config);
-    const body = await response.json();
-    return body;
+    return await response.json();
   }
 
-  return fetchAnimals(url);
+  return fetchData(url);
 };
+ 
