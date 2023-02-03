@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import Search from "../components/Search/Search";
 import { getAnimals } from "../../app/slice/animalsSlice";
+import { getBreeds } from "../slice/breedsSlice";
 import { useAppDispatch } from "../../app/hooks";
 import { getSearchParams } from "../utils/search";
 
@@ -39,6 +40,13 @@ export const Home = () => {
         setNoLocation(true);
         return;
       }
+      dispatch(
+        getBreeds(
+          `https://api.petfinder.com/v2/types/${
+            getSearchParams(params).type
+          }/breeds`
+        )
+      );
       dispatch(
         getAnimals(
           "https://api.petfinder.com/v2/animals" +
