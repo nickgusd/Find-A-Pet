@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, Key } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { createSearchParams } from "react-router-dom";
@@ -7,6 +8,7 @@ import {
   loadingAnimals,
   getAnimals,
 } from "../slice/animalsSlice";
+import { getTypes } from "../slice/typesSlice";
 import queryString from "query-string";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
@@ -31,8 +33,9 @@ export const Search = () => {
       dispatch(
         getAnimals("https://api.petfinder.com/v2/animals" + location.search)
       );
+      dispatch(getTypes(`https://api.petfinder.com/v2/types/${params.type}`));
     }
-  }, []);
+  }, [location.search]);
 
   const onPageChange = (e: any, { activePage }: any): void => {
     setPage(activePage);
@@ -45,6 +48,7 @@ export const Search = () => {
           })}`
       )
     );
+
     navigate({
       pathname: "/search",
       search: `?${createSearchParams({
