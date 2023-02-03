@@ -75,12 +75,11 @@ export const FilterBar = () => {
       default:
         break;
     }
-    setBreedValue(data.value);
     navigate({
       pathname: "/search",
       search: `?${createSearchParams({
         ...params,
-        [data.placeholder.toLowerCase()]: data.value,
+        [data.placeholder.toLowerCase()]: data.value.toLowerCase(),
       })}`,
     });
   };

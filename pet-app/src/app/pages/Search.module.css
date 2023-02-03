@@ -2,7 +2,6 @@
     padding: 24px;
     position: relative;
     display: flex;
-    /* background-color: #f1f1f1; */
 }
 
 .animalsGrid {
@@ -33,5 +32,4 @@
 
 .sidebarWrapper {
     padding: 24px;
-    height: 100%;
 }
