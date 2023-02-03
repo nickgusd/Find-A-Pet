@@ -3,13 +3,15 @@ import { useState, useEffect, Key } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../hooks";
+import { getSearchParams } from "../utils/search";
+import queryString from "query-string";
 import {
   selectAnimals,
   loadingAnimals,
   getAnimals,
 } from "../slice/animalsSlice";
-import { getTypes } from "../slice/typesSlice";
-import queryString from "query-string";
+import { getTypes, loadingTypes } from "../slice/typesSlice";
+import { getBreeds, loadingBreeds } from "../slice/breedsSlice";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
 import { FilterBar } from "../components/FilterBar/FilterBar";
@@ -20,7 +22,9 @@ import styles from "./Search.module.css";
 
 export const Search = () => {
   const { animals, pagination } = useAppSelector(selectAnimals);
-  const isLoading = useAppSelector(loadingAnimals);
+  const isLoadingAnimals = useAppSelector(loadingAnimals);
+  const isLoadingTypes = useAppSelector(loadingTypes);
+  const isLoadingBreeds = useAppSelector(loadingBreeds);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -28,13 +32,18 @@ export const Search = () => {
   const params = queryString.parse(location.search);
 
   useEffect(() => {
-    if (!animals.length) {
-      setPage(Number(params.page));
-      dispatch(
-        getAnimals("https://api.petfinder.com/v2/animals" + location.search)
-      );
-      dispatch(getTypes(`https://api.petfinder.com/v2/types/${params.type}`));
-    }
+    setPage(Number(params.page));
+    dispatch(
+      getAnimals("https://api.petfinder.com/v2/animals" + location.search)
+    );
+    dispatch(
+      getBreeds(
+        `https://api.petfinder.com/v2/types/${
+          getSearchParams(params).type
+        }/breeds`
+      )
+    );
+    dispatch(getTypes(`https://api.petfinder.com/v2/types/${params.type}`));
   }, [location.search]);
 
   const onPageChange = (e: any, { activePage }: any): void => {
@@ -58,7 +67,11 @@ export const Search = () => {
     });
   };
 
-  if (isLoading === "loading") {
+  if (
+    isLoadingAnimals === "loading" ||
+    isLoadingBreeds === "loading" ||
+    isLoadingTypes === "loading"
+  ) {
     return (
       <div className={styles.loader}>
         <LoaderComponent />;
