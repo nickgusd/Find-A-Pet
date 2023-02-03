@@ -1,29 +1,40 @@
+import { useState } from "react";
+import { useNavigate, useLocation, createSearchParams } from "react-router-dom";
+
 import DropdownClearable from "../DropDown/Dropdown";
 import { selectBreeds } from "../../slice/breedsSlice";
 import { selectTypes } from "../../slice/typesSlice";
 import { useAppSelector } from "../../hooks";
+import queryString from "query-string";
 
 import styles from "./styles.module.css";
 
 export const FilterBar = () => {
   const { breeds } = useAppSelector(selectBreeds);
-  const {
-    type: { coats, colors, genders },
-  } = useAppSelector(selectTypes);
+  const { type } = useAppSelector(selectTypes);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = queryString.parse(location.search);
+  const [breedValue, setBreedValue] = useState(params.breed);
+  const [ageValue, setAgeValue] = useState(params.age);
+  const [sizeValue, setSizeValue] = useState(params.size);
+  const [genderValue, setGenderValue] = useState(params.gender);
+  const [coatValue, setCoatValue] = useState(params.coat);
+  const [colorValue, setColorValue] = useState(params.color);
 
   const breedOptions = breeds?.map((item: any, idx: any) => {
     return { key: idx + 1, text: item.name, value: item.name };
   });
 
-  const colorOptions = colors?.map((item: any, idx: any) => {
+  const colorOptions = type?.colors?.map((item: any, idx: any) => {
     return { key: idx + 1, text: item, value: item };
   });
 
-  const coatOptions = coats?.map((item: any, idx: any) => {
+  const coatOptions = type?.coats?.map((item: any, idx: any) => {
     return { key: idx + 1, text: item, value: item };
   });
 
-  const genderOptions = genders?.map((item: any, idx: any) => {
+  const genderOptions = type?.genders?.map((item: any, idx: any) => {
     return { key: idx + 1, text: item, value: item };
   });
 
@@ -41,21 +52,78 @@ export const FilterBar = () => {
     { key: 4, text: "xlarge", value: "xlarge" },
   ];
 
-  const options = [
-    { key: 1, text: "Choice 1", value: 1 },
-    { key: 2, text: "Choice 2", value: 2 },
-    { key: 3, text: "Choice 3", value: 3 },
-  ];
+  const handleChange = (e: any, data: any, type: any): void => {
+    switch (type) {
+      case "breed":
+        setBreedValue(data.value);
+        break;
+      case "age":
+        setAgeValue(data.value);
+        break;
+      case "size":
+        setSizeValue(data.value);
+        break;
+      case "gender":
+        setGenderValue(data.value);
+        break;
+      case "coat":
+        setCoatValue(data.value);
+        break;
+      case "color":
+        setColorValue(data.value);
+        break;
+      default:
+        break;
+    }
+    setBreedValue(data.value);
+    navigate({
+      pathname: "/search",
+      search: `?${createSearchParams({
+        ...params,
+        [data.placeholder.toLowerCase()]: data.value,
+      })}`,
+    });
+  };
 
   return (
     <div className={styles.filterWrapper}>
-      <DropdownClearable options={breedOptions} placeholder="Breeds" />
-      <DropdownClearable options={ageOptions} placeholder="Age" />
-      <DropdownClearable options={sizeOptions} placeholder="Size" />
-      <DropdownClearable options={genderOptions} placeholder="Gender" />
-      <DropdownClearable options={coatOptions} placeholder="Coat Length" />
-      <DropdownClearable options={colorOptions} placeholder="Color" />
-      <DropdownClearable options={options} placeholder="Shelter or Rescue" />
+      <DropdownClearable
+        options={breedOptions}
+        placeholder="Breed"
+        onChange={(e: any, data: any) => handleChange(e, data, "breed")}
+        value={breedValue}
+      />
+      <DropdownClearable
+        options={ageOptions}
+        placeholder="Age"
+        onChange={(e: any, data: any) => handleChange(e, data, "age")}
+        value={ageValue}
+      />
+      <DropdownClearable
+        options={sizeOptions}
+        placeholder="Size"
+        onChange={(e: any, data: any) => handleChange(e, data, "size")}
+        value={sizeValue}
+      />
+      <DropdownClearable
+        options={genderOptions}
+        placeholder="Gender"
+        onChange={(e: any, data: any) => handleChange(e, data, "gender")}
+        value={genderValue}
+      />
+      <DropdownClearable
+        options={coatOptions}
+        placeholder="Coat"
+        onChange={(e: any, data: any) => handleChange(e, data, "coat")}
+        value={coatValue}
+      />
+      <DropdownClearable
+        options={colorOptions}
+        placeholder="Color"
+        onChange={(e: any, data: any) => handleChange(e, data, "color")}
+        value={colorValue}
+      />
+      {/* <DropdownClearable options={options} placeholder="Shelter or Rescue" /> */}
     </div>
   );
 };

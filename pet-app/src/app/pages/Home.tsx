@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import Search from "../components/Search/Search";
-import { getAnimals } from "../../app/slice/animalsSlice";
-import { getBreeds } from "../slice/breedsSlice";
-import { useAppDispatch } from "../../app/hooks";
 import { getSearchParams } from "../utils/search";
 
 import hero from "../assets/dog-cat-hero.png";
 import styles from "./Home.module.css";
 
 export const Home = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
@@ -40,19 +36,6 @@ export const Home = () => {
         setNoLocation(true);
         return;
       }
-      dispatch(
-        getBreeds(
-          `https://api.petfinder.com/v2/types/${
-            getSearchParams(params).type
-          }/breeds`
-        )
-      );
-      dispatch(
-        getAnimals(
-          "https://api.petfinder.com/v2/animals" +
-            `?${createSearchParams(getSearchParams(params))}`
-        )
-      );
       navigate({
         pathname: "/search",
         search: `?${createSearchParams(getSearchParams(params))}`,

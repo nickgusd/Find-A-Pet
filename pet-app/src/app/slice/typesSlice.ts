@@ -9,7 +9,11 @@ export interface TypesState {
 
 const initialState: TypesState = {
   value: {
-    types: []
+    types: {
+      coats: [],
+      colors: [],
+      genders: []
+    }
   },
   status: "idle",
 };
