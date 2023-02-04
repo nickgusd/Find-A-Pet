@@ -1,0 +1,7 @@
+.buttonStyle {
+    background-color: #00A7E1 !important;
+}
+
+.buttonStyle:hover {
+    opacity: .8;
+}

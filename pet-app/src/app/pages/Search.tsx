@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, Key } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../hooks";
@@ -91,19 +91,24 @@ export const Search = () => {
               (item: {
                 breeds: any;
                 photos: any;
-                id: Key | null | undefined;
+                id: any;
                 name: string;
                 breed: string;
                 age: string;
                 distance: number;
+                type: string;
+                organization_id: string;
               }) => (
                 <AnimalCard
+                  id={item.id}
                   key={item.id}
+                  type={item.type.toLowerCase()}
                   name={item.name}
                   breed={item.breeds.primary}
                   age={item.age}
                   src={item.photos[0]?.large}
                   distance={Math.floor(item.distance)}
+                  organizationId={item.organization_id}
                 />
               )
             )}
