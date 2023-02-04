@@ -24,7 +24,7 @@ export const AnimalCard = ({
         <div className={styles.info}>
           <p>{age}</p>
           <ul>
-            <li>{breed}</li>
+            <li>{breed.slice(0, 22)}</li>
           </ul>
         </div>
         {distance ? <div>{distance} miles away</div> : null}
