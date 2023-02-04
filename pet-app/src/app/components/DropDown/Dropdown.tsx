@@ -2,7 +2,7 @@ import { Dropdown } from "semantic-ui-react";
 
 interface DropdownClearableProps {
   options: Array<any>;
-  placeholder: string;
+  placeholder: any;
   onChange: any;
   value: any;
 }

@@ -39,17 +39,17 @@ export const FilterBar = () => {
   });
 
   const ageOptions = [
-    { key: 1, text: "baby", value: "baby" },
-    { key: 2, text: "young", value: "young" },
-    { key: 3, text: "adult", value: "adult" },
-    { key: 4, text: "senior", value: "senior" },
+    { key: 1, text: "Baby", value: "Baby" },
+    { key: 2, text: "Young", value: "Young" },
+    { key: 3, text: "Adult", value: "Adult" },
+    { key: 4, text: "Senior", value: "Senior" },
   ];
 
   const sizeOptions = [
-    { key: 1, text: "small", value: "small" },
-    { key: 2, text: "medium", value: "medium" },
-    { key: 3, text: "large", value: "large" },
-    { key: 4, text: "xlarge", value: "xlarge" },
+    { key: 1, text: "Small", value: "Small" },
+    { key: 2, text: "Medium", value: "Medium" },
+    { key: 3, text: "Large", value: "Large" },
+    { key: 4, text: "Xlarge", value: "Xlarge" },
   ];
 
   const handleChange = (e: any, data: any, type: any): void => {
@@ -75,11 +75,12 @@ export const FilterBar = () => {
       default:
         break;
     }
+
     navigate({
       pathname: "/search",
       search: `?${createSearchParams({
         ...params,
-        [data.placeholder.toLowerCase()]: data.value.toLowerCase(),
+        [data.placeholder.toLowerCase()]: data.value,
       })}`,
     });
   };
@@ -106,7 +107,7 @@ export const FilterBar = () => {
       />
       <DropdownClearable
         options={genderOptions}
-        placeholder="Gender"
+        placeholder={"Gender"}
         onChange={(e: any, data: any) => handleChange(e, data, "gender")}
         value={genderValue}
       />
