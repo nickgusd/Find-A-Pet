@@ -6,6 +6,7 @@ import { Cats } from "../../pages/Cats";
 import { Dogs } from "../../pages/Dogs";
 import { Search } from "../../pages/Search";
 import { Breeds } from "../../pages/Breeds";
+import { Animal } from "../../pages/Animal";
 
 export const Main = () => {
   const notFound = <div>404 Not Found</div>;
@@ -22,9 +23,9 @@ export const Main = () => {
         <Route path="/dog-breeds" element={<Dogs />} />
         <Route path="/cat-breeds/*" element={null} />
         <Route path="/dog-breeds/*" element={null} />
-        <Route path="/dog/:id/*" element={null} />
-        <Route path="/cat/:id/*" element={null} />
-        <Route path="/rabbit/:id/*" element={null} />
+        <Route path="/dog/:id/*" element={<Animal />} />
+        <Route path="/cat/:id/*" element={<Animal />} />
+        <Route path="/rabbit/:id/*" element={<Animal />} />
         <Route path="*" element={notFound} />
       </Routes>
     </Layout>

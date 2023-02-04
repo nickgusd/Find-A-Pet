@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate, useLocation, createSearchParams } from "react-router-dom";
 
-import DropdownClearable from "../DropDown/Dropdown";
 import { selectBreeds } from "../../slice/breedsSlice";
 import { selectTypes } from "../../slice/typesSlice";
 import { useAppSelector } from "../../hooks";
 import queryString from "query-string";
+
+import DropdownClearable from "../DropDown/Dropdown";
+import ButtonComponent from "../Button/Button";
 
 import styles from "./styles.module.css";
 
@@ -85,6 +87,21 @@ export const FilterBar = () => {
     });
   };
 
+  const handleClear = () => {
+    navigate({
+      pathname: "/search",
+      search: `?${createSearchParams({
+        ...params,
+        gender: "",
+        color: "",
+        size: "",
+        age: "",
+        breed: "",
+        coat: "",
+      })}`,
+    });
+  };
+
   return (
     <div className={styles.filterWrapper}>
       <DropdownClearable
@@ -124,6 +141,9 @@ export const FilterBar = () => {
         value={colorValue}
       />
       {/* <DropdownClearable options={options} placeholder="Shelter or Rescue" /> */}
+      <div className={styles.clearAll}>
+        <ButtonComponent primary label="Clear All" onClick={handleClear} />
+      </div>
     </div>
   );
 };

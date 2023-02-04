@@ -49,6 +49,10 @@ export const Home = () => {
         <img src={hero} alt="hero" />
         <div className={styles.searchWrapper} onKeyDown={onSearch}>
           <Search
+            isSearchPage={false}
+            onClick={null}
+            size="large"
+            icon="search"
             noLocation={noLocation}
             onChangeSearch={handleChangeSearch}
             onChangeLocation={handleChangeLocation}

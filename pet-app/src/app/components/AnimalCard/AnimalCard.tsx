@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 export interface AnimalCardProps {
@@ -6,6 +7,9 @@ export interface AnimalCardProps {
   age: string;
   breed: string;
   distance: number;
+  type: string;
+  id: number;
+  organizationId: string;
 }
 
 export const AnimalCard = ({
@@ -14,10 +18,13 @@ export const AnimalCard = ({
   breed,
   name,
   distance,
+  type,
+  id,
+  organizationId,
 }: AnimalCardProps) => {
   if (!src) return null;
   return (
-    <div className={styles.container}>
+    <Link className={styles.container} to={`/${type}/${id}/${organizationId}}`}>
       <img src={src} alt="animal" />
       <div className={styles.footer}>
         <h2>{name}</h2>
@@ -29,6 +36,6 @@ export const AnimalCard = ({
         </div>
         {distance ? <div>{distance} miles away</div> : null}
       </div>
-    </div>
+    </Link>
   );
 };
