@@ -1,0 +1,33 @@
+.container {
+    width: 40%;
+    margin: 0 auto;
+    box-shadow: 0 1px 6px 0 #20212447;
+    height: 500px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.container > img {
+    width: 100%;
+    height: 100%;
+}
+
+.left {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.right {
+    position: absolute;
+    top: 50%;
+    left: 92%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
