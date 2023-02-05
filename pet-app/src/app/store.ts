@@ -1,13 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import animalsReducer from './slice/animalsSlice';
 import breedsReducer from "./slice/breedsSlice";
-import typesReducer from "./slice/typesSlice"
+import typesReducer from "./slice/typesSlice";
+import animalReducer from "./slice/singleAnimalSlice";
 
 export const store = configureStore({
   reducer: {
     animals: animalsReducer,
     breeds: breedsReducer,
     types: typesReducer,
+    animal: animalReducer,
   },
 });
 
