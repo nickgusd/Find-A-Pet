@@ -21,7 +21,7 @@ export const Carousel = ({ photos }: any) => {
       setIndex(index - 1);
     }
   };
-  if (!photos[index]) return null;
+
   return (
     <div className={styles.container}>
       {photos.length > 1 ? (

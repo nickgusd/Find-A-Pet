@@ -12,7 +12,7 @@ const catBreedsArr = catBreeds.breeds.map((item) => {
 const allBreeds = [...dogBreedsArr, ...catBreedsArr];
 
 export const getSearchParams = (params: any) => {
-  const puppyTerms = ["puppy", "puppies", "pups"];
+  const puppyTerms = ["puppy", "puppies", "pups", "puppys"];
   const dogTerms = ["dog", "dogs", "doggies", "doggy", "doggys"];
   const catTerms = ["cats", "cat"];
   const kittenTerms = ["kitten", "kittens", "kitties"];

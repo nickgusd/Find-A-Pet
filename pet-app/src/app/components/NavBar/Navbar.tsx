@@ -45,7 +45,7 @@ export const Navbar = () => {
     setLocationValue(event.currentTarget.value);
   };
 
-  const onSearch = (event: React.KeyboardEvent): void => {
+  const onSearch = () => {
     if (params.location === "") {
       setNoLocation(true);
       return;
@@ -54,6 +54,19 @@ export const Navbar = () => {
       pathname: "/search",
       search: `?${createSearchParams(getSearchParams(params))}`,
     });
+  };
+
+  const onKeyEnter = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      if (params.location === "") {
+        setNoLocation(true);
+        return;
+      }
+      navigate({
+        pathname: "/search",
+        search: `?${createSearchParams(getSearchParams(params))}`,
+      });
+    }
   };
 
   return (
@@ -71,7 +84,7 @@ export const Navbar = () => {
         </div>
       </div>
       {location.pathname === "/search" && (
-        <div>
+        <div onKeyDown={onKeyEnter}>
           <Search
             isSearchPage
             onClick={onSearch}
