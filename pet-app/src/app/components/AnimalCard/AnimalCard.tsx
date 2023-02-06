@@ -34,7 +34,9 @@ export const AnimalCard = ({
             <li>{breed.slice(0, 22)}</li>
           </ul>
         </div>
-        {distance ? <div>{distance} miles away</div> : null}
+        {distance ? (
+          <div className={styles.distance}>{distance} miles away</div>
+        ) : null}
       </div>
     </Link>
   );

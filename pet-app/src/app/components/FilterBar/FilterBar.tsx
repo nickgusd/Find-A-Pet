@@ -25,33 +25,33 @@ export const FilterBar = () => {
   const [colorValue, setColorValue] = useState(params.color);
 
   const breedOptions = breeds?.map((item: any, idx: any) => {
-    return { key: idx + 1, text: item.name, value: item.name };
+    return { key: idx + 1, text: item.name, value: item.name.toLowerCase() };
   });
 
   const colorOptions = type?.colors?.map((item: any, idx: any) => {
-    return { key: idx + 1, text: item, value: item };
+    return { key: idx + 1, text: item, value: item.toLowerCase() };
   });
 
   const coatOptions = type?.coats?.map((item: any, idx: any) => {
-    return { key: idx + 1, text: item, value: item };
+    return { key: idx + 1, text: item, value: item.toLowerCase() };
   });
 
   const genderOptions = type?.genders?.map((item: any, idx: any) => {
-    return { key: idx + 1, text: item, value: item };
+    return { key: idx + 1, text: item, value: item.toLowerCase() };
   });
 
   const ageOptions = [
-    { key: 1, text: "Baby", value: "Baby" },
-    { key: 2, text: "Young", value: "Young" },
-    { key: 3, text: "Adult", value: "Adult" },
-    { key: 4, text: "Senior", value: "Senior" },
+    { key: 1, text: "Baby", value: "baby" },
+    { key: 2, text: "Young", value: "young" },
+    { key: 3, text: "Adult", value: "adult" },
+    { key: 4, text: "Senior", value: "senior" },
   ];
 
   const sizeOptions = [
-    { key: 1, text: "Small", value: "Small" },
-    { key: 2, text: "Medium", value: "Medium" },
-    { key: 3, text: "Large", value: "Large" },
-    { key: 4, text: "Xlarge", value: "Xlarge" },
+    { key: 1, text: "Small", value: "small" },
+    { key: 2, text: "Medium", value: "medium" },
+    { key: 3, text: "Large", value: "large" },
+    { key: 4, text: "Xlarge", value: "xlarge" },
   ];
 
   const handleChange = (e: any, data: any, type: any): void => {
@@ -124,7 +124,7 @@ export const FilterBar = () => {
       />
       <DropdownClearable
         options={genderOptions}
-        placeholder={"Gender"}
+        placeholder="Gender"
         onChange={(e: any, data: any) => handleChange(e, data, "gender")}
         value={genderValue}
       />
