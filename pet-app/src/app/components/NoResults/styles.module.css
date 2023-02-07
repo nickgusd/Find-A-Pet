@@ -1,0 +1,32 @@
+.container {
+    color: #525252;
+}
+
+.container > img {
+    width: 885px;
+    height: 500px;
+}
+
+.imageWrapper {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+}
+
+.imageWrapper > img {
+    width: 885px;
+    height: 500px;
+}
+
+.textWrapper {
+    position: absolute;
+    left: calc(50% - 156px);
+    top: 0px;
+}
+
+.textWrapper > h1 {
+    font-size: 40px;
+}
+
+
+

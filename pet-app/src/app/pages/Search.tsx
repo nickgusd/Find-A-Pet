@@ -15,6 +15,7 @@ import { getBreeds, loadingBreeds } from "../slice/breedsSlice";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
 import { FilterBar } from "../components/FilterBar/FilterBar";
+import { NoResults } from "../components/NoResults/NoResults";
 import LoaderComponent from "../components/Loader/Loader";
 import PaginationComponent from "../components/PaginationComponent/Pagination";
 
@@ -86,6 +87,7 @@ export const Search = () => {
       </div>
       <div className={styles.gridWrapper}>
         <div className={styles.animalsGrid}>
+          {!animals.length && <NoResults />}
           {animals.length > 0 &&
             animals.map(
               (item: {
