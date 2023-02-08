@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import AppErrorBoundary from "./app/components/ErrorBoundary/ErrorBoundary";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -14,11 +15,13 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <AppErrorBoundary>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </AppErrorBoundary>
   </React.StrictMode>
 );
 

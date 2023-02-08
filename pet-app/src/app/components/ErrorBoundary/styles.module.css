@@ -1,0 +1,30 @@
+.AppErrorBoundary {
+    padding: 24px;
+    height: 100vh;
+    width: 100vw;
+    color: #525252;
+}
+
+
+.AppError {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.AppError > img {
+    transform: scale(.4);
+}
+
+.AppErrorHeader {
+    position: absolute;
+    top: 100px;
+}
+
+.AppErrorFooter {
+    position: absolute;
+    bottom: 100px;
+}
