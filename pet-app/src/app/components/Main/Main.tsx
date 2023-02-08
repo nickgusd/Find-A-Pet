@@ -7,9 +7,9 @@ import { Dogs } from "../../pages/Dogs";
 import { Search } from "../../pages/Search";
 import { Breeds } from "../../pages/Breeds";
 import { Animal } from "../../pages/Animal";
+import { NotFound } from "../../pages/NotFounds";
 
 export const Main = () => {
-  const notFound = <div>404 Not Found</div>;
   return (
     <Layout>
       <Routes>
@@ -26,7 +26,7 @@ export const Main = () => {
         <Route path="/dog/:id/*" element={<Animal />} />
         <Route path="/cat/:id/*" element={<Animal />} />
         <Route path="/rabbit/:id/*" element={<Animal />} />
-        <Route path="*" element={notFound} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );
