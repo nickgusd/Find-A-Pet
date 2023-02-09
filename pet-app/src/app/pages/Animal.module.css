@@ -8,3 +8,8 @@
     left: calc(50% - 32px);
     top: calc(50% - 32px);
 }
+
+.contentWrapper {
+    display: flex;
+    gap: 14px;
+}

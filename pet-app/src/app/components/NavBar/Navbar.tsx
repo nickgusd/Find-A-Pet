@@ -30,9 +30,6 @@ export const Navbar = () => {
     page: "1",
   };
 
-  console.log("SearchVal", searchValue);
-  console.log("locationVal", locationValue);
-
   const handleChangeSearch = (
     event: React.FormEvent<HTMLInputElement>
   ): void => {

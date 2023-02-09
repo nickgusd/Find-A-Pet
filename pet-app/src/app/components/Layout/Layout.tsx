@@ -10,10 +10,10 @@ export interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isSearch =
-    location.pathname !== "/search" ? styles.container : styles.searchLayout;
+    location.pathname === "/" ? styles.container : styles.searchLayout;
 
   return (
-    <div className={`${isSearch}`}>
+    <div className={isSearch}>
       <Navbar />
       {children}
     </div>

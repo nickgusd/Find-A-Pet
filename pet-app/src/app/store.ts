@@ -3,6 +3,7 @@ import animalsReducer from './slice/animalsSlice';
 import breedsReducer from "./slice/breedsSlice";
 import typesReducer from "./slice/typesSlice";
 import animalReducer from "./slice/singleAnimalSlice";
+import organizationsReducer from "./slice/organizationsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     breeds: breedsReducer,
     types: typesReducer,
     animal: animalReducer,
+    organizations: organizationsReducer,
   },
 });
 
