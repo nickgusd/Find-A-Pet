@@ -1,0 +1,61 @@
+.bioWrapper {
+    padding: 24px;
+    box-shadow: 0 1px 6px 0 #20212447;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 8px;
+    width: 50%;
+    margin: 24px;
+    text-align: left;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 8px;
+}
+
+.info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 14px 8px;
+    gap: 14px;
+    border-top: 1px solid #525252;
+    border-bottom: 1px solid #525252;
+}
+
+.breed {
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 8px;
+    gap: 14px;
+    align-items: center;
+}
+
+.breed > h2, h3 {
+    margin: 0px;
+    font-size: 18px;
+}
+
+.spacer {
+    border-radius: 20px;
+    margin: 0px;
+    border: 2px solid black;
+    height: 0px;
+}
+
+.about > h3 {
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+.description {
+    border-top: 1px solid #525252;
+    padding-top: 14px;
+}
+
+.description > h3 {
+    margin-bottom: 14px;
+}
