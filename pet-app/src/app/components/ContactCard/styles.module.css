@@ -22,3 +22,9 @@
     margin-bottom: 14px;
 }
 
+.socialWrapper {
+    display: flex;
+    gap: 14px;
+    padding: 14px 40px 0px;
+}
+

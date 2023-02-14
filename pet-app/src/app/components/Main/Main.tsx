@@ -7,6 +7,7 @@ import { Dogs } from "../../pages/Dogs";
 import { Search } from "../../pages/Search";
 import { Breeds } from "../../pages/Breeds";
 import { Animal } from "../../pages/Animal";
+import { Organizations } from "../../pages/Organizations";
 import { NotFound } from "../../pages/NotFounds";
 
 export const Main = () => {
@@ -18,7 +19,7 @@ export const Main = () => {
         <Route path="/login" element={null} />
         <Route path="/search" element={<Search />} />
         <Route path="/breeds" element={<Breeds />} />
-        <Route path="/organizations" element={null} />
+        <Route path="/organizations" element={<Organizations />} />
         <Route path="/cat-breeds" element={<Cats />} />
         <Route path="/dog-breeds" element={<Dogs />} />
         <Route path="/cat-breeds/*" element={null} />
