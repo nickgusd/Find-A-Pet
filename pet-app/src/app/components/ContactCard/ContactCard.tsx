@@ -4,22 +4,26 @@ import { formatPhone } from "../../utils/string";
 import { SocialIcon } from "react-social-icons";
 
 import styles from "./styles.module.css";
+import paw from "../../assets/paw.svg";
 
-export const ContactCard = ({ org }: any) => {
+export const ContactCard = ({ org = {} }: any) => {
   const location = useLocation();
   const { facebook, twitter, instagram, pintrest, youtube } =
     org?.social_media || {};
+  const isOrgPage = location.pathname === "/organizations";
 
   return (
-    <div className={styles.contentWrapper}>
-      {org?.name && (
-        <div className={styles.header}>
-          <h1>{org?.name}</h1>
-        </div>
-      )}
+    <div
+      className={`${styles.contentWrapper} ${
+        isOrgPage ? styles.orgContact : ""
+      }`}
+    >
       {Object.keys(org).length > 0 && (
         <>
-          {console.log("test", true)}
+          <div className={styles.header}>
+            <img src={paw} alt="paw" />
+            <h2>{org.name}</h2>
+          </div>
           <div className={styles.innerWrapper}>
             <b>
               <p> Email: </p>
@@ -57,7 +61,7 @@ export const ContactCard = ({ org }: any) => {
               {org.website || "Not provided"}
             </a>
           </div>
-          {location.pathname !== "/organizations" && (
+          {!isOrgPage && (
             <div className={styles.socialWrapper}>
               {facebook && <SocialIcon url={facebook} target="_blank" />}
               {instagram && <SocialIcon url={instagram} target="_blank" />}
