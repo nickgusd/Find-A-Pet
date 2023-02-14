@@ -31,13 +31,14 @@ export const Organizations = () => {
         </div>
       )}
       {organizations && !isLoading && (
-        <div className={styles.orgsGrid}>
-          {organizations.map((item: any) => (
-            <div key={item.id}>
-              <ContactCard org={item} />
-            </div>
-          ))}
-        </div>
+        <>
+          <h1> Rescue Organizations</h1>
+          <div className={styles.orgsGrid}>
+            {organizations.map((item: any) => (
+              <ContactCard org={item} key={item.id} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
