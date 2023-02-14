@@ -18,3 +18,7 @@
     top: calc(50% - 90px);
     left: calc(50% - 45px); 
 }
+
+.pagination {
+    padding: 24px;
+}
