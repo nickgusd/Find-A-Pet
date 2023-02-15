@@ -15,7 +15,23 @@ export const convertToString = (val: boolean) => {
 } 
 
 export const formatPhone = (str: string) => {
-  if (!str) return null;
-  if (str.includes("(") || str.includes("-")) return str
-  return "(" + str.slice(0, 3) + ") " + str.slice(3, 6) + "-" + str.slice(6, str.length)
+  const nums = "0123456789"
+  if (!str) return null;  
+  const numsOnly = str.split("").filter(item => nums.includes(item))
+
+  if (numsOnly.length === 11) {
+    numsOnly.shift()
+  }
+
+  return numsOnly.map((item, idx) => {
+    if (idx === 0) {
+      return "(" + item
+    } else if (idx === 2) {
+      return item + ") "
+    } else if (idx === 5) {
+      return item + "-"
+    } else {
+      return item
+    }
+  }).join("")
 }
