@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Link,
   useLocation,
@@ -30,6 +30,10 @@ export const Navbar = () => {
     page: "1",
   };
 
+  useEffect(() => {
+    setNoLocation(false);
+  }, [location.pathname]);
+
   const handleChangeSearch = (
     event: React.FormEvent<HTMLInputElement>
   ): void => {
@@ -43,9 +47,11 @@ export const Navbar = () => {
   };
 
   const onSearch = () => {
-    if (params.location === "") {
+    if (locationValue === "") {
       setNoLocation(true);
       return;
+    } else {
+      setNoLocation(false);
     }
     navigate({
       pathname: "/search",
@@ -55,9 +61,11 @@ export const Navbar = () => {
 
   const onKeyEnter = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
-      if (params.location === "") {
+      if (locationValue === "") {
         setNoLocation(true);
         return;
+      } else {
+        setNoLocation(false);
       }
       navigate({
         pathname: "/search",

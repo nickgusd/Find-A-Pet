@@ -14,7 +14,6 @@
 }
 
 
-
 .innerWrapper {
     width: 80%;
     margin: 0 auto;
@@ -25,21 +24,19 @@
 }
 
 .header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 24px;
     display: flex;
-    gap: 14px;
+    gap: 70px;
     justify-content: center;
 }
 
 .header > h2 {
     margin-top: 0px;
-    width: 75%;
+    width: 320px;
 }
 
-
-.header > img{
-    display: flex;
+.header > div > img{
     width: 50px;
 }
 

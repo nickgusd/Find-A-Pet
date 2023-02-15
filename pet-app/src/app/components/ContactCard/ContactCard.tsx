@@ -21,7 +21,9 @@ export const ContactCard = ({ org = {} }: any) => {
       {Object.keys(org).length > 0 && (
         <>
           <div className={styles.header}>
-            <img src={paw} alt="paw" />
+            <div>
+              <img src={paw} alt="paw" />
+            </div>
             <h2>{org.name}</h2>
           </div>
           <div className={styles.innerWrapper}>

@@ -35,6 +35,8 @@ export const Home = () => {
       if (params.location === "") {
         setNoLocation(true);
         return;
+      } else {
+        setNoLocation(false);
       }
       navigate({
         pathname: "/search",
