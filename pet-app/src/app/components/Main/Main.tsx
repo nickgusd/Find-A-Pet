@@ -5,7 +5,7 @@ import { Home } from "../../pages/Home";
 import { Cats } from "../../pages/Cats";
 import { Dogs } from "../../pages/Dogs";
 import { Search } from "../../pages/Search";
-import { Breeds } from "../../pages/Breeds";
+// import { Breeds } from "../../pages/Breeds";
 import { Animal } from "../../pages/Animal";
 import { Organizations } from "../../pages/Organizations";
 import { NotFound } from "../../pages/NotFounds";
@@ -18,7 +18,7 @@ export const Main = () => {
         <Route path="/signup" element={null} />
         <Route path="/login" element={null} />
         <Route path="/search" element={<Search />} />
-        <Route path="/breeds" element={<Breeds />} />
+        {/* <Route path="/breeds" element={<Breeds />} /> */}
         <Route path="/organizations" element={<Organizations />} />
         <Route path="/cat-breeds" element={<Cats />} />
         <Route path="/dog-breeds" element={<Dogs />} />
