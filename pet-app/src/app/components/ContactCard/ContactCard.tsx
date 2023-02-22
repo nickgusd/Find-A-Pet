@@ -63,15 +63,13 @@ export const ContactCard = ({ org = {} }: any) => {
               {org.website || "Not provided"}
             </a>
           </div>
-          {!isOrgPage && (
-            <div className={styles.socialWrapper}>
-              {facebook && <SocialIcon url={facebook} target="_blank" />}
-              {instagram && <SocialIcon url={instagram} target="_blank" />}
-              {twitter && <SocialIcon url={twitter} target="_blank" />}
-              {pintrest && <SocialIcon url={pintrest} target="_blank" />}
-              {youtube && <SocialIcon url={youtube} target="_blank" />}
-            </div>
-          )}
+          <div className={styles.socialWrapper}>
+            {facebook && <SocialIcon url={facebook} target="_blank" />}
+            {instagram && <SocialIcon url={instagram} target="_blank" />}
+            {twitter && <SocialIcon url={twitter} target="_blank" />}
+            {pintrest && <SocialIcon url={pintrest} target="_blank" />}
+            {youtube && <SocialIcon url={youtube} target="_blank" />}
+          </div>
         </>
       )}
     </div>

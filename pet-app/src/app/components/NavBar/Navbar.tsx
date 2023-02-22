@@ -21,7 +21,7 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
-  const leftNavItems = ["Breeds", "Organizations"];
+  // const leftNavItems = ["Breeds", "Organizations"];
   const rightNavItems = ["Sign Up", "Log In"];
 
   const params = {
@@ -81,11 +81,12 @@ export const Navbar = () => {
           <img src={logo} alt="logo" />
         </Link>
         <div className={styles.leftNavItems}>
-          {leftNavItems.map((item, idx) => (
+          <Link to={`/${getPath("Organizations")}`}>Organizations</Link>
+          {/* {leftNavItems.map((item, idx) => (
             <Link key={idx} to={`/${getPath(item)}`}>
               {item}
             </Link>
-          ))}
+          ))} */}
         </div>
       </div>
       {location.pathname === "/search" && (
