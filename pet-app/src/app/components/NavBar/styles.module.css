@@ -63,18 +63,19 @@
     margin-right: 40px;
 }
 
-.rightWrapper > a {
+.rightWrapper > div {
     text-decoration: none;
     color: #525252;
     font-weight: bold;
     padding-top: 6px;
 }
 
-.rightWrapper > a:hover {
+.rightWrapper > div:hover {
     color: #00a7e1;
+    cursor: pointer;
 }
 
-.rightWrapper > a::after {
+.rightWrapper > div::after {
     content: '';
     display: block;
     margin:  4px 0px auto;
@@ -84,7 +85,7 @@
     transition: width .5s ease, background-color .5s ease;
 }
 
-.rightWrapper > a:hover::after {
+.rightWrapper > div:hover::after {
     width: 100%;
     background: #00a7e1;
   } 
