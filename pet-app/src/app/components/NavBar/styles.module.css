@@ -72,6 +72,7 @@
 
 .rightWrapper > div:hover {
     color: #00a7e1;
+    cursor: pointer;
 }
 
 .rightWrapper > div::after {
