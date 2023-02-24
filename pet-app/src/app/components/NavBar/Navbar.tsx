@@ -5,6 +5,7 @@ import {
   createSearchParams,
   useNavigate,
 } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import logo from "../../assets/Find-a-Pet-logo.svg";
 import { getSearchParams } from "../../utils/search";
@@ -22,7 +23,6 @@ export const Navbar = () => {
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
   // const leftNavItems = ["Breeds", "Organizations"];
-  const rightNavItems = ["Sign Up", "Log In"];
 
   const params = {
     type: searchValue,
@@ -33,6 +33,15 @@ export const Navbar = () => {
   useEffect(() => {
     setNoLocation(false);
   }, [location.pathname]);
+
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  const logoutWithRedirect = () =>
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
 
   const handleChangeSearch = (
     event: React.FormEvent<HTMLInputElement>
@@ -104,11 +113,12 @@ export const Navbar = () => {
       )}
 
       <div className={styles.rightWrapper}>
-        {rightNavItems.map((item, idx) => (
-          <Link key={idx} to={`/${getPath(item)}`}>
-            {item}
-          </Link>
-        ))}
+        {!isAuthenticated && (
+          <div onClick={() => loginWithRedirect()}>Log In</div>
+        )}
+        {isAuthenticated && (
+          <div onClick={() => logoutWithRedirect()}>Log Out</div>
+        )}
       </div>
     </div>
   );
