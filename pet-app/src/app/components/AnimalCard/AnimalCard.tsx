@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BsFillHeartFill } from "react-icons/bs";
 import styles from "./styles.module.css";
 
 export interface AnimalCardProps {
@@ -10,6 +11,7 @@ export interface AnimalCardProps {
   type: string;
   id: number;
   organizationId: string;
+  onClick: any;
 }
 
 export const AnimalCard = ({
@@ -21,11 +23,13 @@ export const AnimalCard = ({
   type,
   id,
   organizationId,
+  onClick,
 }: AnimalCardProps) => {
   if (!src) return null;
   return (
     <Link className={styles.container} to={`/${type}/${id}/${organizationId}}`}>
       <img src={src} alt="animal" />
+      <BsFillHeartFill onClick={onClick} />
       <div className={styles.footer}>
         <h2>{name}</h2>
         <div className={styles.info}>

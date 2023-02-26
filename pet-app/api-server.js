@@ -26,7 +26,7 @@ if (
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors({ origin: appOrigin }));
+app.use(cors({ origin: appOrigin}));
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -41,13 +41,12 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
-console.log("checkJWT", checkJwt)
-
 app.get("/api/external", checkJwt, (req, res) => {
   res.send({
     msg: "Your access token was successfully validated!",
   });
 });
+
 
 app.listen(port, () => console.log(`API Server listening on port ${port}`));
  
