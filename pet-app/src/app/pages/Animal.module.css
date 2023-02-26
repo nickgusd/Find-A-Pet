@@ -1,6 +1,21 @@
 .carouselWrapper {
     width: 100%;
     background-color: black;
+    position: relative;
+}
+
+.carouselWrapper > svg {
+    color: white;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: calc(100% - 135px);
+    top: 14px;
+    cursor: pointer;
+}
+
+.carouselWrapper > svg:hover {
+    opacity: .8;
 }
 
 .loader {

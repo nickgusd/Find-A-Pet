@@ -4,6 +4,7 @@
     max-height: 400px;
     border-radius: 8px;
     background-color: white;
+    position: relative;
 }
 
 .container > img {
@@ -11,6 +12,24 @@
     height: 270px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+}
+
+.container > svg {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: calc(100% - 50px);
+    color: white;
+    opacity: .9;
+    transition-property: transform-scale;
+    transition-duration: 4s;
+    transition-delay: 2s;
+}
+
+.container > svg:hover {
+    transform: scale(1.2);
+    opacity: .7;
 }
 
 .container:hover {

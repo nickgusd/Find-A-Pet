@@ -10,7 +10,7 @@ const favoriteSchema = new Schema({
   breed: { type: String },
   organizationId: { type: String},
   image: { type: String },
-  distance: { type: Number }
+  distance: { type: Number}
 });
 
 const Favorite = mongoose.model("Favorite", favoriteSchema);
