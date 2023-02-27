@@ -33,3 +33,22 @@
 .sidebarWrapper {
     padding: 24px;
 }
+
+@media screen and (min-width: 1441px) {
+    .animalsGrid {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
+@media screen and (max-width: 1439px) {
+    .animalsGrid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+    .animalsGrid {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 64px;
+    }
+}
