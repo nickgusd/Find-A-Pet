@@ -140,7 +140,6 @@ export const FilterBar = () => {
         onChange={(e: any, data: any) => handleChange(e, data, "color")}
         value={colorValue}
       />
-      {/* <DropdownClearable options={options} placeholder="Shelter or Rescue" /> */}
       <div className={styles.clearAll}>
         <ButtonComponent primary label="Clear All" onClick={handleClear} />
       </div>
