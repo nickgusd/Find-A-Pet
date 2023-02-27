@@ -5,6 +5,7 @@ import { createSearchParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { getSearchParams } from "../utils/search";
+import { isFavorite } from "../utils/favorite";
 import queryString from "query-string";
 import {
   selectAnimals,
@@ -29,9 +30,11 @@ export const Search = () => {
   const isLoadingTypes = useAppSelector(loadingTypes);
   const isLoadingBreeds = useAppSelector(loadingBreeds);
   const [page, setPage] = useState(1);
+  const [favorites, setFavorites] = useState<any[]>([]);
+  const [saved, setSaved] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const location = useLocation();
   const params = queryString.parse(location.search);
 
@@ -49,6 +52,15 @@ export const Search = () => {
     );
     dispatch(getTypes(`https://api.petfinder.com/v2/types/${params.type}`));
   }, [location.search]);
+
+  useEffect(() => {
+    API.getFavorites()
+      .then((res) => {
+        const { data } = res;
+        setFavorites(data);
+      })
+      .catch((err) => console.log(err));
+  }, [saved]);
 
   const onPageChange = (e: any, { activePage }: any): void => {
     setPage(activePage);
@@ -96,11 +108,13 @@ export const Search = () => {
         petId: currentAnimal?.id?.toString(),
         userId: user?.sub,
         breed: currentAnimal?.breeds?.primary,
-        organizationId: currentAnimal?.organziation_id,
+        organizationId: currentAnimal?.organization_id,
         image:
           currentAnimal?.photos[0]?.full || currentAnimal?.photos[0]?.large,
         distance: currentAnimal?.distance,
-      }).catch((err) => console.log("err", err));
+      })
+        .catch((err) => console.log("err", err))
+        .finally(() => setSaved(!saved));
     } else {
       loginWithRedirect();
     }
@@ -130,6 +144,8 @@ export const Search = () => {
                 <AnimalCard
                   id={item.id}
                   key={item.id}
+                  favorite={isFavorite(favorites, item.id)}
+                  isSearchPage
                   onClick={(e: any) => handleClick(e, item.id)}
                   type={item.type.toLowerCase()}
                   name={item.name}
@@ -138,6 +154,7 @@ export const Search = () => {
                   src={item.photos[0]?.large}
                   distance={Math.floor(item.distance)}
                   organizationId={item.organization_id}
+                  onClose={null}
                 />
               )
             )}

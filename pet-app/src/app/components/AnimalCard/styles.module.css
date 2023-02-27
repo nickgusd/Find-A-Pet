@@ -20,7 +20,6 @@
     height: 30px;
     top: 10px;
     left: calc(100% - 50px);
-    color: white;
     opacity: .9;
     transition-property: transform-scale;
     transition-duration: 4s;

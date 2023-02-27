@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -23,6 +23,7 @@ import Loader from "../components/Loader/Loader";
 import API from "../api/favoritesAPI";
 
 import styles from "./Animal.module.css";
+import { isFavorite } from "../utils/favorite";
 
 export const Animal = () => {
   const dispatch = useAppDispatch();
@@ -31,15 +32,25 @@ export const Animal = () => {
   const loading = useAppSelector(loadingAnimal);
   const loadingOrg = useAppSelector(loadingOrganizations);
   const selectOrg = useAppSelector(selectOrganizations);
+  const [favorites, setFavorites] = useState([]);
   const id = location.pathname.split("/")[2];
   const orgId = location.pathname.split("/")[3].split("%")[0];
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     dispatch(getAnimal(`https://api.petfinder.com/v2/animals/${id}`));
     dispatch(
       getOrganizations(`https://api.petfinder.com/v2/organizations/${orgId}`)
     );
+  }, []);
+
+  useEffect(() => {
+    API.getFavorites()
+      .then((res) => {
+        const { data } = res;
+        setFavorites(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const { animal } = selector;
@@ -75,7 +86,10 @@ export const Animal = () => {
         <>
           <div className={styles.carouselWrapper}>
             <Carousel photos={animal?.photos} />
-            <BsFillHeartFill onClick={handleSave} />
+            <BsFillHeartFill
+              onClick={handleSave}
+              color={isFavorite(favorites, animal.id) || "white"}
+            />
           </div>
           <div className={styles.contentWrapper}>
             <AnimalBio data={animal} />
