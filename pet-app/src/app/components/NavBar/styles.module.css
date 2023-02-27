@@ -90,4 +90,24 @@
     background: #00a7e1;
   } 
 
+.rightWrapper > svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition-property: transform-scale;
+    transition-duration: 4s;
+    transition-delay: 2s;
+}
 
+.rightWrapper > svg:hover {
+    transform: scale(1.2);
+    opacity: .8;
+    color: #00a7e1;
+}
+
+.rightWrapper > span {
+    background-color: #d8d4d4;
+    height: 100px;
+    width: 2px;
+    opacity: .8;
+}

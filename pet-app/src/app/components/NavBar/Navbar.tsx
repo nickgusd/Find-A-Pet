@@ -8,10 +8,9 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 
 import logo from "../../assets/Find-a-Pet-logo.svg";
+import { BsFillHeartFill } from "react-icons/bs";
 import { getSearchParams } from "../../utils/search";
-
 import { getPath } from "../../utils/string";
-
 import Search from "../Search/Search";
 
 import styles from "./styles.module.css";
@@ -113,6 +112,14 @@ export const Navbar = () => {
       )}
 
       <div className={styles.rightWrapper}>
+        <BsFillHeartFill
+          onClick={
+            !isAuthenticated
+              ? () => loginWithRedirect()
+              : () => navigate("/favorites")
+          }
+        />
+        <span />
         {!isAuthenticated && (
           <div onClick={() => loginWithRedirect()}>Log In</div>
         )}

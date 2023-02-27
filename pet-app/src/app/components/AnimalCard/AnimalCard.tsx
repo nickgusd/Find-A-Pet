@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
+import { FiXCircle } from "react-icons/fi";
 import styles from "./styles.module.css";
 
 export interface AnimalCardProps {
@@ -12,6 +13,9 @@ export interface AnimalCardProps {
   id: number;
   organizationId: string;
   onClick: any;
+  isSearchPage: boolean;
+  onClose: any;
+  favorite: any;
 }
 
 export const AnimalCard = ({
@@ -24,12 +28,19 @@ export const AnimalCard = ({
   id,
   organizationId,
   onClick,
+  isSearchPage,
+  onClose,
+  favorite,
 }: AnimalCardProps) => {
   if (!src) return null;
   return (
     <Link className={styles.container} to={`/${type}/${id}/${organizationId}}`}>
       <img src={src} alt="animal" />
-      <BsFillHeartFill onClick={onClick} />
+      {isSearchPage ? (
+        <BsFillHeartFill onClick={onClick} color={favorite} />
+      ) : (
+        <FiXCircle onClick={onClose} color="white" />
+      )}
       <div className={styles.footer}>
         <h2>{name}</h2>
         <div className={styles.info}>

@@ -4,7 +4,9 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Favorites.find(req.query)
-      .then(dbFavorite => res.json(dbFavorite))
+      .then(dbFavorite => {
+        res.json(dbFavorite)
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
@@ -13,10 +15,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log("req.body", req.body)
-    db.Favorites.create(req.body)
+    db.Favorites.find(req.query).then(favorite => {
+      const isDuplicate = favorite.find(item => item.petId === req.body.petId);
+      if (!isDuplicate) {
+        db.Favorites.create(req.body)
       .then(dbFavorite => res.json(dbFavorite))
       .catch(err => res.status(422).json(err));
+      }
+    }).catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     db.Favorites.findOneAndUpdate({ id: req.params.id }, req.body)
