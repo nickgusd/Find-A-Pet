@@ -97,7 +97,7 @@ export const Search = () => {
 
   const handleClick = (e: any, id: string | number) => {
     e.preventDefault();
-    const currentAnimal = animals.find(
+    const currentAnimal = animals?.find(
       (item: { id: string | number }) => item.id === id
     );
     if (isAuthenticated) {

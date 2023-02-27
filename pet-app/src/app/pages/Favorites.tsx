@@ -16,7 +16,7 @@ export const Favorites = () => {
     API.getFavorites()
       .then((res) => {
         const { data } = res;
-        const favoriteItems = data.filter(
+        const favoriteItems = data?.filter(
           (item: any) => item.userId === user?.sub
         );
 
