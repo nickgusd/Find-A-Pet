@@ -10,7 +10,8 @@ require('dotenv').config()
 
 const appVar = expressLib();
 
-const portVar = process.env.SERVER_PORT || 3001;
+const portVar = process.env.PORT || 3001;
+const host = "0.0.0.0"
 
 appVar.use(morganLib("dev"));
 appVar.use(expressLib.urlencoded({ extended: true }));
@@ -40,4 +41,4 @@ mongoose.connect(
   }
 );
 
-appVar.listen(portVar, () => console.log(`Server listening on port ${portVar}`));
+appVar.listen(portVar, host, () => console.log(`Server listening on port ${portVar}`));
