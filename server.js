@@ -24,10 +24,6 @@ appVar.use(
   })
 );
 
-// if (process.env.NODE_ENV === "production") {
-//   appVar.use(expressLib.static(join(__dirname, "build")));
-// }
-
 if (process.env.NODE_ENV === "production") {
   appVar.use(expressLib.static("build"));
 }
