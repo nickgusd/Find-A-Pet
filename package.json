@@ -21,6 +21,7 @@
     "express-jwt": "^8.4.0",
     "helmet": "^4.4",
     "highlight.js": "^10.0",
+    "if-env": "^1.0.4",
     "jwks-rsa": "^3.0.0",
     "mongoose": "^6.10.0",
     "morgan": "^1.9",
@@ -41,7 +42,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel spa api-server",
+    "start": "if-env NODE_ENV=production && npm run server || npm run spa",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -51,7 +52,8 @@
     "api-server": "node api-server.js",
     "api-server:dev": "nodemon api-server.js",
     "dev": "npm-run-all --parallel spa api-server:dev",
-    "prod": "npm-run-all --parallel server api-server"
+    "prod": "npm-run-all --parallel server api-server",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
