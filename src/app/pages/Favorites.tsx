@@ -6,23 +6,24 @@ import API from "../api/favoritesAPI";
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
 
 import styles from "./Favorites.module.css";
+import { NoResults } from "../components/NoResults/NoResults";
 
 export const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  const { user, isAuthenticated } = useAuth0();
+  const [isLoading, setIsLoading] = useState(true);
+  const { user = {}, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    API.getFavorites()
-      .then((res) => {
-        const { data } = res;
-        const favoriteItems = data?.filter(
-          (item: any) => item.userId === user?.sub
-        );
-
-        setFavorites(favoriteItems);
-      })
-      .catch((err) => console.log(err));
+    if (user.sub) {
+      API.getFavorites({ userId: user?.sub })
+        .then((res) => {
+          const { data } = res;
+          setFavorites(data);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
   }, [deleted, isAuthenticated, user]);
 
   const handleClose = (e: any, id: string) => {
@@ -39,6 +40,12 @@ export const Favorites = () => {
       <div className={styles.header}>
         <h1>Favorites</h1>
       </div>
+      {favorites.length === 0 && !isLoading && (
+        <NoResults
+          header="No favorites found"
+          content="You need to add favorites for them to appear on this page!"
+        />
+      )}
       {favorites.length > 0 && (
         <div className={styles.grid}>
           {favorites?.map((item: any) => (

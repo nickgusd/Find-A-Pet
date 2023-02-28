@@ -3,8 +3,8 @@ import axios from "axios";
 
 export default {
   // Gets Favorites
-  getFavorites: function() {
-    return axios.get("/api/favorites");
+  getFavorites: function({userId}: any) {
+    return axios.get("/api/favorites/" + userId);
   },
   // Deletes the favorite pet with the given id
   deleteFavorite: function(id: string) {
