@@ -120,6 +120,8 @@ export const Search = () => {
     }
   };
 
+  console.log("favorites", favorites);
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebarWrapper}>
