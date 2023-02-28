@@ -4,8 +4,7 @@ const helmetLib = require("helmet");
 const cors = require('cors');
 const mongoose = require("mongoose");
 const routes = require("./routes");
-// const bodyParser = require("body-parser");
-// const { join } = require("path");
+
 require('dotenv').config()
 
 const appVar = expressLib();
@@ -17,7 +16,6 @@ appVar.use(morganLib("dev"));
 appVar.use(expressLib.urlencoded({ extended: true }));
 appVar.use(cors());
 appVar.use(expressLib.json());
-// appVar.use(bodyParser.json());
 
 appVar.use(
   helmetLib({ 
@@ -29,7 +27,6 @@ if (process.env.NODE_ENV === "production") {
   appVar.use(expressLib.static("build"));
 }
 
-// appVar.use(expressLib.static(join(__dirname, "build")));
 
 appVar.use(routes);
 
@@ -41,4 +38,4 @@ mongoose.connect(
   }
 );
 
-appVar.listen(portVar, host, () => console.log(`Server listening on port ${portVar}`));
+appVar.listen(portVar, host,  () => console.log(`Server listening on port ${portVar}`));

@@ -45,7 +45,7 @@ export const Animal = () => {
   }, []);
 
   useEffect(() => {
-    API.getFavorites()
+    API.getFavorites(user?.sub)
       .then((res) => {
         const { data } = res;
         setFavorites(data);

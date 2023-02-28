@@ -54,12 +54,14 @@ export const Search = () => {
   }, [location.search]);
 
   useEffect(() => {
-    API.getFavorites()
-      .then((res) => {
-        const { data } = res;
-        setFavorites(data);
-      })
-      .catch((err) => console.log(err));
+    if (user) {
+      API.getFavorites({ userId: user?.sub })
+        .then((res) => {
+          const { data } = res;
+          setFavorites(data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, [saved]);
 
   const onPageChange = (e: any, { activePage }: any): void => {
@@ -127,7 +129,12 @@ export const Search = () => {
       </div>
       <div className={styles.gridWrapper}>
         <div className={styles.animalsGrid}>
-          {!animals.length && <NoResults />}
+          {!animals.length && (
+            <NoResults
+              header={"No Results Found!"}
+              content={"Please try searching again!"}
+            />
+          )}
           {animals.length > 0 &&
             animals.map(
               (item: {

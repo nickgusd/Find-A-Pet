@@ -5,7 +5,8 @@ module.exports = {
   findAll: function(req, res) {
     db.Favorites.find(req.query)
       .then(dbFavorite => {
-        res.json(dbFavorite)
+        const userFavorite = dbFavorite.filter(item => item.userId === req.params.id);
+        res.json(userFavorite);
       })
       .catch(err => res.status(422).json(err));
   },
@@ -16,7 +17,7 @@ module.exports = {
   },
   create: function(req, res) {
     db.Favorites.find(req.query).then(favorite => {
-      const isDuplicate = favorite.find(item => item.petId === req.body.petId);
+      const isDuplicate = favorite.find(item => item.petId === req.body.petId && item.userId === req.body.userId);
       if (!isDuplicate) {
         db.Favorites.create(req.body)
       .then(dbFavorite => res.json(dbFavorite))
