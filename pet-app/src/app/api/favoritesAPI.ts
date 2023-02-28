@@ -4,7 +4,7 @@ import axios from "axios";
 export default {
   // Gets Favorites
   getFavorites: function() {
-    return axios.get("http://localhost:3001/api/favorites");
+    return axios.get("/api/favorites");
   },
   // Deletes the favorite pet with the given id
   deleteFavorite: function(id: string) {
