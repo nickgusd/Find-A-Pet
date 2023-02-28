@@ -2,8 +2,6 @@
   "name": "pet-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
-  "homepage": ".",
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
     "@reduxjs/toolkit": "^1.8.1",
