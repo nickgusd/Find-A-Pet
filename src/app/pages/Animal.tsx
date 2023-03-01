@@ -33,6 +33,7 @@ export const Animal = () => {
   const loadingOrg = useAppSelector(loadingOrganizations);
   const selectOrg = useAppSelector(selectOrganizations);
   const [favorites, setFavorites] = useState([]);
+  const [saved, setSaved] = useState(false);
   const id = location.pathname.split("/")[2];
   const orgId = location.pathname.split("/")[3].split("%")[0];
   const { user = {}, isAuthenticated, loginWithRedirect } = useAuth0();
@@ -53,10 +54,12 @@ export const Animal = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [user]);
+  }, [user, saved]);
 
   const { animal } = selector;
   const { organization } = selectOrg;
+
+  console.log("location", location);
 
   const handleSave = (e: any) => {
     e.preventDefault();
@@ -71,9 +74,15 @@ export const Animal = () => {
         organizationId: animal.organization_id,
         image: animal.photos[0].full || animal.photos[0].large,
         distance: animal.distance,
-      }).catch((err) => console.log("err", err));
+      })
+        .catch((err) => console.log("err", err))
+        .finally(() => setSaved(!saved));
     } else {
-      loginWithRedirect();
+      loginWithRedirect({
+        appState: {
+          returnTo: window.location.pathname + window.location.search,
+        },
+      });
     }
   };
 

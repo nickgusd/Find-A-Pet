@@ -35,13 +35,25 @@ export const Navbar = () => {
 
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
+  const handleRedirect = () => {
+    if (
+      location.pathname.includes("/cat") ||
+      location.pathname.includes("/dog")
+    ) {
+      return window.location.origin;
+    } else {
+      return (
+        window.location.origin +
+        window.location.pathname +
+        window.location.search
+      );
+    }
+  };
+
   const logoutWithRedirect = () =>
     logout({
       logoutParams: {
-        returnTo:
-          window.location.origin +
-          window.location.pathname +
-          window.location.search,
+        returnTo: handleRedirect(),
       },
     });
 
