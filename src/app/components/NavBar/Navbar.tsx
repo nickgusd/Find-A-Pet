@@ -33,7 +33,7 @@ export const Navbar = () => {
     setNoLocation(false);
   }, [location.pathname]);
 
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const logoutWithRedirect = () =>
     logout({

@@ -35,7 +35,7 @@ export const Animal = () => {
   const [favorites, setFavorites] = useState([]);
   const id = location.pathname.split("/")[2];
   const orgId = location.pathname.split("/")[3].split("%")[0];
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { user = {}, isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     dispatch(getAnimal(`https://api.petfinder.com/v2/animals/${id}`));
@@ -45,13 +45,15 @@ export const Animal = () => {
   }, []);
 
   useEffect(() => {
-    API.getFavorites(user?.sub)
-      .then((res) => {
-        const { data } = res;
-        setFavorites(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (user.sub) {
+      API.getFavorites({ userId: user?.sub })
+        .then((res) => {
+          const { data } = res;
+          setFavorites(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
 
   const { animal } = selector;
   const { organization } = selectOrg;
