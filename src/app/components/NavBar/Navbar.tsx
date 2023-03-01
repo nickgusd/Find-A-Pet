@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import {
   Link,
@@ -21,7 +22,6 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
-  // const leftNavItems = ["Breeds", "Organizations"];
 
   const params = {
     type: searchValue,
@@ -38,7 +38,10 @@ export const Navbar = () => {
   const logoutWithRedirect = () =>
     logout({
       logoutParams: {
-        returnTo: window.location.origin,
+        returnTo:
+          window.location.origin +
+          window.location.pathname +
+          window.location.search,
       },
     });
 
@@ -115,13 +118,30 @@ export const Navbar = () => {
         <BsFillHeartFill
           onClick={
             !isAuthenticated
-              ? () => loginWithRedirect()
+              ? () => {
+                  loginWithRedirect({
+                    appState: {
+                      returnTo:
+                        window.location.pathname + window.location.search,
+                    },
+                  });
+                }
               : () => navigate("/favorites")
           }
         />
         <span />
         {!isAuthenticated && (
-          <div onClick={() => loginWithRedirect()}>Log In</div>
+          <div
+            onClick={() =>
+              loginWithRedirect({
+                appState: {
+                  returnTo: window.location.pathname + window.location.search,
+                },
+              })
+            }
+          >
+            Log In
+          </div>
         )}
         {isAuthenticated && (
           <div onClick={() => logoutWithRedirect()}>Log Out</div>
