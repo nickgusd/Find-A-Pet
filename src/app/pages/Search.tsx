@@ -118,7 +118,11 @@ export const Search = () => {
         .catch((err) => console.log("err", err))
         .finally(() => setSaved(!saved));
     } else {
-      loginWithRedirect();
+      loginWithRedirect({
+        appState: {
+          returnTo: window.location.pathname + window.location.search,
+        },
+      });
     }
   };
 
