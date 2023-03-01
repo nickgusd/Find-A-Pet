@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import logo from "../../assets/Find-a-Pet-logo.svg";
+import logo from "../../assets/high-res-logo.svg";
 import { BsFillHeartFill } from "react-icons/bs";
 import { getSearchParams } from "../../utils/search";
 import { getPath } from "../../utils/string";
