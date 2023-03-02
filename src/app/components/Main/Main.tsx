@@ -37,6 +37,11 @@ export const Main = () => {
         <Route path="/dog/:id/*" element={<Animal />} />
         <Route path="/cat/:id/*" element={<Animal />} />
         <Route path="/rabbit/:id/*" element={<Animal />} />
+        <Route path="/parrot/:id/*" element={<Animal />} />
+        <Route path="/bird/:id/*" element={<Animal />} />
+        <Route path="/barnyard/:id/*" element={<Animal />} />
+        <Route path="/horse/:id/*" element={<Animal />} />
+        <Route path="/goat/:id/*" element={<Animal />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

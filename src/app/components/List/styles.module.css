@@ -1,0 +1,27 @@
+.wrapper {
+    padding: 24px;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: calc(50% - 50px);
+    z-index: 10000;
+    border-radius: 8px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper:hover {
+    height: auto;
+}
+
+.wrapper > a {
+    margin: 4px 0px;
+    color: #525252;
+    font-weight: bold;
+}
+
+.wrapper > a:hover {
+    color: #00a7e1;
+}
+
