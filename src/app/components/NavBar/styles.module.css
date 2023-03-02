@@ -30,6 +30,7 @@
     gap: 24px;
 }
 
+
 .leftNavItems > a {
     text-decoration: none;
     color: #525252;
@@ -56,6 +57,13 @@
     background: #00a7e1;
   } 
 
+.animals {
+    color: #525252;
+    font-weight: bold;
+    padding-top: 6px;
+    position: relative;
+}
+
 .rightWrapper {
     display: flex;
     flex-direction: row;
@@ -71,9 +79,14 @@
     padding-top: 6px;
 }
 
-.rightWrapper > div:hover {
+.animals:hover {
     color: #00a7e1;
     cursor: pointer;
+}
+
+.rightWrapper > div:hover {
+    cursor: pointer;
+    color: #00a7e1;
 }
 
 .rightWrapper > div::after {

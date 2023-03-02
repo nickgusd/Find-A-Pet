@@ -13,6 +13,7 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { getSearchParams } from "../../utils/search";
 import { getPath } from "../../utils/string";
 import Search from "../Search/Search";
+import { List } from "../List/List";
 
 import styles from "./styles.module.css";
 
@@ -22,6 +23,7 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
+  const [mouse, setMouse] = useState(false);
 
   const params = {
     type: searchValue,
@@ -97,6 +99,14 @@ export const Navbar = () => {
     }
   };
 
+  const handleMouseOver = () => {
+    setMouse(true);
+  };
+
+  const handleMouseLeave = () => {
+    setMouse(false);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.leftWrapper}>
@@ -105,11 +115,10 @@ export const Navbar = () => {
         </Link>
         <div className={styles.leftNavItems}>
           <Link to={`/${getPath("Organizations")}`}>Organizations</Link>
-          {/* {leftNavItems.map((item, idx) => (
-            <Link key={idx} to={`/${getPath(item)}`}>
-              {item}
-            </Link>
-          ))} */}
+          <div className={styles.animals} onMouseEnter={handleMouseOver}>
+            Animals
+            {mouse && <List onMouseLeave={handleMouseLeave} />}
+          </div>
         </div>
       </div>
       {location.pathname === "/search" && (
@@ -125,7 +134,6 @@ export const Navbar = () => {
           />
         </div>
       )}
-
       <div className={styles.rightWrapper}>
         <BsFillHeartFill
           onClick={

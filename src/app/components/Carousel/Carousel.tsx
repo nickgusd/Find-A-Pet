@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import NoImage from "../../assets/No-Image-Placeholder.png";
 
 import styles from "./styles.module.css";
 
@@ -26,12 +27,15 @@ export const Carousel = ({ photos }: any) => {
     <div className={styles.container}>
       {photos.length > 1 ? (
         <>
-          <img src={photos[index]?.full} alt="cat" />
+          <img
+            src={photos[index].full ? photos[index].full : NoImage}
+            alt="cat"
+          />
           <FiChevronLeft className={styles.left} onClick={handleClickLeft} />
           <FiChevronRight className={styles.right} onClick={handleClickRight} />
         </>
       ) : (
-        <img src={photos[0].full} alt="cat" />
+        <img src={photos.length === 0 ? NoImage : photos[0].full} alt="cat" />
       )}
     </div>
   );
