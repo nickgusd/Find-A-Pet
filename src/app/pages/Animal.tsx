@@ -36,6 +36,7 @@ export const Animal = () => {
   const [saved, setSaved] = useState(false);
   const id = location.pathname.split("/")[2];
   const orgId = location.pathname.split("/")[3].split("%")[0];
+  const type = location.pathname.split("/")[1];
   const { user = {}, isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
@@ -59,14 +60,12 @@ export const Animal = () => {
   const { animal } = selector;
   const { organization } = selectOrg;
 
-  console.log("location", location);
-
   const handleSave = (e: any) => {
     e.preventDefault();
     if (isAuthenticated) {
       API.saveFavorite({
         name: animal.name,
-        type: animal.species.toLowerCase(),
+        type: type,
         age: animal.age,
         petId: animal.id.toString(),
         userId: user?.sub,

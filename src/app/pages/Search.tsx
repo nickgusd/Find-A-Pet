@@ -26,7 +26,7 @@ import styles from "./Search.module.css";
 
 export const Search = () => {
   const { animals, pagination } = useAppSelector(selectAnimals);
-  const types = useAppSelector(selectTypes);
+  // const types = useAppSelector(selectTypes);
   const isLoadingAnimals = useAppSelector(loadingAnimals);
   const isLoadingTypes = useAppSelector(loadingTypes);
   const isLoadingBreeds = useAppSelector(loadingBreeds);
@@ -38,6 +38,7 @@ export const Search = () => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const location = useLocation();
   const params = queryString.parse(location.search);
+  // console.log("params", params);
 
   useEffect(() => {
     setPage(Number(params.page));
@@ -52,7 +53,6 @@ export const Search = () => {
       )
     );
     dispatch(getTypes(`https://api.petfinder.com/v2/types/${params.type}`));
-    // dispatch(getTypes(`https://api.petfinder.com/v2/types`));
   }, [location.search]);
 
   useEffect(() => {
@@ -104,10 +104,11 @@ export const Search = () => {
     const currentAnimal = animals?.find(
       (item: { id: string | number }) => item.id === id
     );
+
     if (isAuthenticated) {
       API.saveFavorite({
         name: currentAnimal?.name,
-        type: currentAnimal?.species?.toLowerCase(),
+        type: params.type,
         age: currentAnimal?.age,
         petId: currentAnimal?.id?.toString(),
         userId: user?.sub,
@@ -127,8 +128,6 @@ export const Search = () => {
       });
     }
   };
-
-  console.log("types", types);
 
   return (
     <div className={styles.container}>
