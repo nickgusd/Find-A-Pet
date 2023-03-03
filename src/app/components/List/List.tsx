@@ -6,7 +6,10 @@ import styles from "./styles.module.css";
 export const List = ({ onMouseLeave }: any) => {
   const location = useLocation();
   const animals = ["Dogs", "Cats", "Rabbits", "Horses", "Birds", "Other"];
-  const isSearch = location.pathname === "/search" ? styles.searchWrapper : "";
+  const isSearch =
+    location.pathname === "/search" || location.pathname === "/organizations"
+      ? styles.searchWrapper
+      : "";
   return (
     <div
       className={`${styles.wrapper} ${isSearch}`}
