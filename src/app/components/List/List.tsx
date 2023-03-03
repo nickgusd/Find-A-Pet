@@ -7,7 +7,9 @@ export const List = ({ onMouseLeave }: any) => {
   const location = useLocation();
   const animals = ["Dogs", "Cats", "Rabbits", "Horses", "Birds", "Other"];
   const isSearch =
-    location.pathname === "/search" || location.pathname === "/organizations"
+    location.pathname === "/search" ||
+    location.pathname === "/organizations" ||
+    location.pathname === "/favorites"
       ? styles.searchWrapper
       : "";
   return (

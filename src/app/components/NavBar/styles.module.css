@@ -48,6 +48,21 @@
     transition: width .5s ease, background-color .5s ease;
 }
 
+.leftNavItems > div::after {
+    content: '';
+    display: block;
+    margin:  4px 0px auto;
+    height: 2px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.leftNavItems > div:hover::after {
+    width: 100%;
+    background: #00a7e1;
+  } 
+
 .leftNavItems > a:hover {
     color: #00a7e1;
 }
