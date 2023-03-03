@@ -2,7 +2,7 @@
     padding: 24px;
     background-color: white;
     position: absolute;
-    top: 60px;
+    top: 64px;
     right: calc(50% - 50px);
     z-index: 10000;
     border-radius: 8px;
@@ -24,4 +24,17 @@
 .wrapper > a:hover {
     color: #00a7e1;
 }
+
+.searchWrapper {
+    background-color: #00a7e1;
+}
+
+.searchWrapper > a {
+    color: white;
+}
+
+.searchWrapper > a:hover {
+    color: #525252;
+}
+
 

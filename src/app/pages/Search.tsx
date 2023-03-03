@@ -12,7 +12,7 @@ import {
   loadingAnimals,
   getAnimals,
 } from "../slice/animalsSlice";
-import { getTypes, loadingTypes, selectTypes } from "../slice/typesSlice";
+import { getTypes, loadingTypes } from "../slice/typesSlice";
 import { getBreeds, loadingBreeds } from "../slice/breedsSlice";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
@@ -38,7 +38,6 @@ export const Search = () => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const location = useLocation();
   const params = queryString.parse(location.search);
-  // console.log("params", params);
 
   useEffect(() => {
     setPage(Number(params.page));
