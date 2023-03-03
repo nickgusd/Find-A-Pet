@@ -5,7 +5,8 @@
     top: 64px;
     right: calc(50% - 50px);
     z-index: 10000;
-    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     text-align: left;
     display: flex;
     flex-direction: column;
