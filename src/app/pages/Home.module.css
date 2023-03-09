@@ -8,8 +8,23 @@
     height: 100%;
 }
 
+.heroMobile {
+    width: 70% !important;
+}
+
 .heroWrapper {
     position: relative;
+}
+
+.mobileHeroWrapper {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.mobileImageWrapper {
+    margin-top: 14px;
 }
 
 .searchWrapper {
@@ -30,6 +45,44 @@
     font-weight: bold;
 }
 
+.mobileHeader {
+    margin-top: 60px;
+    color: #03a7e1;
+    font-weight: bold;
+}
+
+.mobileHeader > h1 {
+    font-size: 40px;
+}
+
 .header > p {
     font-size: 28px;
+}
+
+.mobileText {
+    color: #525252;
+}
+
+@media screen and (max-width: 539px) {
+    .mobileHeader > h1 {
+        font-size: 32px;
+    }
+
+    .mobileText {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 282px) {
+    .mobileHeader > h1 {
+        font-size: 28px;
+    }
+
+    .mobileText {
+        font-size: 16px;
+    }
+
+    .heroMobile {
+        width: 100% !important;
+    }
 }
