@@ -188,66 +188,20 @@ export const Navbar = () => {
             <Link to="/">
               <img src={logo} alt="logo" />
             </Link>
-            {/* <div className={styles.leftNavItems}>
-              <Link to={`/${getPath("Organizations")}`}>Organizations</Link>
-              <div className={styles.animals} onMouseEnter={handleMouseOver}>
-                Animals
-                {mouse && <List onMouseLeave={handleMouseLeave} />}
-              </div>
-            </div> */}
           </div>
-          {/* {location.pathname === "/search" && (
-            <div onKeyDown={onKeyEnter}>
-              <Search
-                isMobile={false}
-                isSearchPage
-                onClick={onSearch}
-                size="small"
-                icon="search"
-                onChangeLocation={handleChangeLocation}
-                onChangeSearch={handleChangeSearch}
-                noLocation={noLocation}
-              />
-            </div>
-          )} */}
           <div className={styles.rightWrapperMobile}>
             <FiMenu color="#525252" onClick={() => setMobileNav(true)} />
-            {/* <BsFillHeartFill
-              onClick={
-                !isAuthenticated
-                  ? () => {
-                      loginWithRedirect({
-                        appState: {
-                          returnTo:
-                            window.location.pathname + window.location.search,
-                        },
-                      });
-                    }
-                  : () => navigate("/favorites")
-              }
-            /> */}
-            {/* <span />
-            {!isAuthenticated && (
-              <div
-                onClick={() =>
-                  loginWithRedirect({
-                    appState: {
-                      returnTo:
-                        window.location.pathname + window.location.search,
-                    },
-                  })
-                }
-              >
-                Log In
-              </div>
-            )}
-            {isAuthenticated && (
-              <div onClick={() => logoutWithRedirect()}>Log Out</div>
-            )} */}
           </div>
         </>
       )}
-      {mobileNav && <MobileNav setMobileNav={setMobileNav} />}
+      {mobileNav && (
+        <MobileNav
+          setMobileNav={setMobileNav}
+          loginWithRedirect={loginWithRedirect}
+          logoutWithRedirect={logoutWithRedirect}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
     </div>
   );
 };

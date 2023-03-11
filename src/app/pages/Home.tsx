@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { createSearchParams } from "react-router-dom";
 import Search from "../components/Search/Search";
 import { getSearchParams } from "../utils/search";
+import Button from "../components/Button/Button";
 
 import hero from "../assets/dog-cat-hero.png";
 import mobileHero from "../assets/Dogs-Cats-mobile.png";
@@ -35,7 +36,20 @@ export const Home = () => {
   };
 
   const onSearch = (event: React.KeyboardEvent): void => {
-    if (event.key === "Enter") {
+    if (!isTabletOrMobile) {
+      if (event.key === "Enter") {
+        if (params.location === "") {
+          setNoLocation(true);
+          return;
+        } else {
+          setNoLocation(false);
+        }
+        navigate({
+          pathname: "/search",
+          search: `?${createSearchParams(getSearchParams(params))}`,
+        });
+      }
+    } else {
       if (params.location === "") {
         setNoLocation(true);
         return;
@@ -82,18 +96,16 @@ export const Home = () => {
       )}
       {isTabletOrMobile && (
         <div className={styles.mobileHeroWrapper}>
-          <div onKeyDown={onSearch}>
-            <Search
-              isMobile
-              isSearchPage={isSmallMobile}
-              onClick={null}
-              size="large"
-              icon="search"
-              noLocation={noLocation}
-              onChangeSearch={handleChangeSearch}
-              onChangeLocation={handleChangeLocation}
-            />
-          </div>
+          <Search
+            isMobile
+            isSearchPage={isSmallMobile}
+            onClick={null}
+            size="large"
+            icon="search"
+            noLocation={noLocation}
+            onChangeSearch={handleChangeSearch}
+            onChangeLocation={handleChangeLocation}
+          />
           <div className={styles.mobileHeader}>
             <h1>Find your new pet</h1>
             <p className={styles.mobileText}>
@@ -102,6 +114,9 @@ export const Home = () => {
           </div>
           <div className={styles.mobileImageWrapper}>
             <img src={mobileHero} alt="hero" className={styles.heroMobile} />
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button primary label="Search" onClick={onSearch} />
           </div>
         </div>
       )}

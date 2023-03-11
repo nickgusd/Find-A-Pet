@@ -63,6 +63,15 @@
     color: #525252;
 }
 
+.buttonWrapper {
+    padding: 24px 0px;
+}
+
+.buttonWrapper > button {
+    width: 200px;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 539px) {
     .mobileHeader > h1 {
         font-size: 32px;

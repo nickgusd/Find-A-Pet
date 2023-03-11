@@ -41,5 +41,19 @@
 
 .links > a {
     margin: 14px 0px;
-    color: #03a7e1;
+    color: #525252;
+    text-decoration: none;
+}
+
+.links > a:visited {
+    color: #525252;
+}
+
+.links > a:active{
+    color: #00a7e1;
+}
+
+.links > div {
+    margin: 14px 0px;
+    color: #525252;
 }
