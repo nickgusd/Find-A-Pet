@@ -16,6 +16,7 @@ import { getPath } from "../../utils/string";
 import Search from "../Search/Search";
 import { List } from "../List/List";
 import { FiMenu } from "react-icons/fi";
+import { MobileNav } from "../MobileNav/MobileNav";
 
 import styles from "./styles.module.css";
 
@@ -26,6 +27,7 @@ export const Navbar = () => {
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
   const [mouse, setMouse] = useState(false);
+  const [mobileNav, setMobileNav] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const params = {
@@ -180,7 +182,7 @@ export const Navbar = () => {
           </div>
         </>
       )}
-      {isMobile && (
+      {isMobile && !mobileNav && (
         <>
           <div className={styles.leftWrapperMobile}>
             <Link to="/">
@@ -209,7 +211,7 @@ export const Navbar = () => {
             </div>
           )} */}
           <div className={styles.rightWrapperMobile}>
-            <FiMenu color="#525252" />
+            <FiMenu color="#525252" onClick={() => setMobileNav(true)} />
             {/* <BsFillHeartFill
               onClick={
                 !isAuthenticated
@@ -245,6 +247,7 @@ export const Navbar = () => {
           </div>
         </>
       )}
+      {mobileNav && <MobileNav setMobileNav={setMobileNav} />}
     </div>
   );
 };

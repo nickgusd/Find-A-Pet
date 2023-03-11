@@ -151,6 +151,10 @@
     opacity: .8;
 }
 
+.rightWrapperMobile {
+    position: relative;
+}
+
 .rightWrapperMobile > svg {
     width: 40px;
     height: 40px;

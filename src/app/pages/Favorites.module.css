@@ -20,10 +20,39 @@
     margin: 0 auto;
 }
 
+@media screen and (max-width: 1220px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
 
   @media screen and (max-width: 1024px) {
     .grid {
         grid-template-columns: 1fr 1fr;
         column-gap: 64px;
+    }
+  }
+
+  @media screen and (max-width: 765px) {
+    .grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        width: 100%;
+    }
+
+    .header {
+        text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 282px) {
+    .grid {
+        width: 100%;
+        row-gap: 0px;
+    }
+    .header {
+        padding: 0px 24px;
+        text-align: left;
     }
   }
