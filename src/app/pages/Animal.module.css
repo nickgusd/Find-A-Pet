@@ -28,3 +28,14 @@
     display: flex;
     gap: 14px;
 }
+
+@media screen and (max-width: 1024px) {
+    .contentWrapper {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .carouselWrapper > svg {
+        left: calc(100% - 70px);
+    }
+}

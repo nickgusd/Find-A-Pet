@@ -7,6 +7,7 @@
     height: fit-content;
     text-align: left;
     word-break: break-word;
+    overflow: auto;
 }
 
 .orgContact {
@@ -46,3 +47,21 @@
     padding: 14px 40px 0px;
 }
 
+@media screen and (max-width: 1024px) {
+    .contentWrapper {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .header {
+        justify-content: flex-start;
+    }
+
+    .innerWrapper {
+        width: 100%;
+    }
+
+    .socialWrapper {
+        padding: 14px 0px;
+    }
+}
