@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { createSearchParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { getSearchParams } from "../utils/search";
@@ -14,10 +15,12 @@ import {
 } from "../slice/animalsSlice";
 import { getTypes, loadingTypes } from "../slice/typesSlice";
 import { getBreeds, loadingBreeds } from "../slice/breedsSlice";
+import { isMobileNav } from "../slice/animalsSlice";
 
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
 import { FilterBar } from "../components/FilterBar/FilterBar";
 import { NoResults } from "../components/NoResults/NoResults";
+import { BsFilterSquareFill } from "react-icons/bs";
 import LoaderComponent from "../components/Loader/Loader";
 import PaginationComponent from "../components/PaginationComponent/Pagination";
 import API from "../api/favoritesAPI";
@@ -33,11 +36,15 @@ export const Search = () => {
   const [page, setPage] = useState(1);
   const [favorites, setFavorites] = useState<any[]>([]);
   const [saved, setSaved] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const location = useLocation();
   const params = queryString.parse(location.search);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+  const mobileNav = useAppSelector(isMobileNav);
+  // const isSmallMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     setPage(Number(params.page));
@@ -130,10 +137,27 @@ export const Search = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.sidebarWrapper}>
+      <div
+        className={`${styles.sidebarWrapper} ${
+          isTabletOrMobile ? styles.sidebarMobile : ""
+        }`}
+      >
         <FilterBar />
       </div>
       <div className={styles.gridWrapper}>
+        {isTabletOrMobile && (
+          <div className={styles.filter}>
+            <BsFilterSquareFill
+              color="#525252"
+              onClick={() => setShowFilter(!showFilter)}
+            />
+          </div>
+        )}
+        {showFilter && isTabletOrMobile && !mobileNav && (
+          <div className={styles.mobileFilter}>
+            <FilterBar />
+          </div>
+        )}
         <div className={styles.animalsGrid}>
           {!animals.length && (
             <NoResults

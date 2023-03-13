@@ -17,18 +17,21 @@ import Search from "../Search/Search";
 import { List } from "../List/List";
 import { FiMenu } from "react-icons/fi";
 import { MobileNav } from "../MobileNav/MobileNav";
+import { isMobileNav, setMobileNav } from "../../slice/animalsSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 
 import styles from "./styles.module.css";
 
 export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
   const [mouse, setMouse] = useState(false);
-  const [mobileNav, setMobileNav] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
+  const mobileNav = useAppSelector(isMobileNav);
 
   const params = {
     type: searchValue,
@@ -190,13 +193,15 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className={styles.rightWrapperMobile}>
-            <FiMenu color="#525252" onClick={() => setMobileNav(true)} />
+            <FiMenu
+              color="#525252"
+              onClick={() => dispatch(setMobileNav(true))}
+            />
           </div>
         </>
       )}
       {mobileNav && (
         <MobileNav
-          setMobileNav={setMobileNav}
           loginWithRedirect={loginWithRedirect}
           logoutWithRedirect={logoutWithRedirect}
           isAuthenticated={isAuthenticated}

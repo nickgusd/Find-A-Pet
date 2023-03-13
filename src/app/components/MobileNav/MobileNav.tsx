@@ -1,22 +1,27 @@
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../assets/high-res-logo.svg";
+import { useAppDispatch } from "../../hooks";
+import { setMobileNav } from "../../slice/animalsSlice";
 
 import styles from "./styles.module.css";
 
 export const MobileNav = ({
-  setMobileNav,
   logoutWithRedirect,
   loginWithRedirect,
   isAuthenticated,
 }: any) => {
+  const dispatch = useAppDispatch();
   return (
     <div className={styles.mobileNav}>
       <div className={styles.close}>
         <Link to="/">
           <img src={logo} alt="logo" />
         </Link>
-        <AiOutlineClose color="#525252" onClick={() => setMobileNav(false)} />
+        <AiOutlineClose
+          color="#525252"
+          onClick={() => dispatch(setMobileNav(false))}
+        />
       </div>
       <div className={styles.links}>
         {isAuthenticated && (

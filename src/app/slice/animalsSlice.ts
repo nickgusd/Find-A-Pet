@@ -4,6 +4,7 @@ import { getOAuth } from "../api/animalsAPI";
 
 export interface AnimalState {
   value: any;
+  mobileNav: boolean,
   status: "idle" | "loading" | "failed";
 }
 
@@ -12,6 +13,7 @@ const initialState: AnimalState = {
     animals: [],
     pagination: {}
   },
+  mobileNav: false,
   status: "idle",
 };
 
@@ -35,6 +37,9 @@ export const AnimalsSlice = createSlice({
     setAnimals: (state, action: PayloadAction<any>) => {
       state.value = action.payload;
     },
+    setMobileNav: (state, action: PayloadAction<any>) => {
+      state.mobileNav = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -50,9 +55,10 @@ export const AnimalsSlice = createSlice({
   },
 });
 
-export const { setAnimals } = AnimalsSlice.actions;
+export const { setAnimals, setMobileNav } = AnimalsSlice.actions;
 
 export const selectAnimals = (state: RootState) => state.animals.value;
 export const loadingAnimals = (state: RootState) => state.animals.status;
+export const isMobileNav = (state: RootState) => state.animals.mobileNav;
 
 export default AnimalsSlice.reducer;
