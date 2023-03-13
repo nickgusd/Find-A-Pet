@@ -80,3 +80,11 @@
 .distance {
     color: #00A7E1;
 }
+
+
+@media screen and (max-width: 282px) {
+    .container {
+        transform: scale(.8);
+    }
+
+}

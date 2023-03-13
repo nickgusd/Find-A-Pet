@@ -10,6 +10,7 @@ describe("counter reducer", () => {
     // animals: [],
     value: [],
     status: "idle",
+    mobileNav: false,
   };
   // it('should handle initial state', () => {
   //   expect(counterReducer(undefined, { type: 'unknown' })).toEqual({

@@ -18,3 +18,9 @@
 .clearAll > button:hover {
     background-color: #00A7E1 !important;
 }
+
+@media screen and (max-width: 1024px) {
+   .filterWrapper {
+    width: 100%;
+   }
+}

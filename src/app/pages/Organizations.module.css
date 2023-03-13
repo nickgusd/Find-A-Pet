@@ -42,12 +42,25 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 64px;
     }
+
+    .orgsGrid {
+        grid-template-columns: 1fr;
+        padding: 8px;
+        grid-row-gap: 0px;
+    }
+
 }
 
 @media screen and (max-width: 1220px) {
     .animalsGrid {
         grid-template-columns: 1fr;
         column-gap: 64px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 24px 0px;
     }
 }
 

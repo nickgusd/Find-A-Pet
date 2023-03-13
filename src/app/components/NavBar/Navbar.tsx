@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useMediaQuery } from "react-responsive";
 
 import logo from "../../assets/high-res-logo.svg";
 import { BsFillHeartFill } from "react-icons/bs";
@@ -14,16 +15,23 @@ import { getSearchParams } from "../../utils/search";
 import { getPath } from "../../utils/string";
 import Search from "../Search/Search";
 import { List } from "../List/List";
+import { FiMenu } from "react-icons/fi";
+import { MobileNav } from "../MobileNav/MobileNav";
+import { isMobileNav, setMobileNav } from "../../slice/animalsSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 
 import styles from "./styles.module.css";
 
 export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState("");
   const [locationValue, setLocationValue] = useState("");
   const [noLocation, setNoLocation] = useState(false);
   const [mouse, setMouse] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
+  const mobileNav = useAppSelector(isMobileNav);
 
   const params = {
     type: searchValue,
@@ -108,65 +116,97 @@ export const Navbar = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.leftWrapper}>
-        <Link to="/">
-          <img src={logo} alt="logo" />
-        </Link>
-        <div className={styles.leftNavItems}>
-          <Link to={`/${getPath("Organizations")}`}>Organizations</Link>
-          <div className={styles.animals} onMouseEnter={handleMouseOver}>
-            Animals
-            {mouse && <List onMouseLeave={handleMouseLeave} />}
+    <div
+      className={`${styles.container} ${
+        isMobile ? styles.containerMobile : ""
+      }`}
+    >
+      {!isMobile && (
+        <>
+          <div className={styles.leftWrapper}>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+            <div className={styles.leftNavItems}>
+              <Link to={`/${getPath("Organizations")}`}>Organizations</Link>
+              <div className={styles.animals} onMouseEnter={handleMouseOver}>
+                Animals
+                {mouse && <List onMouseLeave={handleMouseLeave} />}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      {location.pathname === "/search" && (
-        <div onKeyDown={onKeyEnter}>
-          <Search
-            isSearchPage
-            onClick={onSearch}
-            size="small"
-            icon="search"
-            onChangeLocation={handleChangeLocation}
-            onChangeSearch={handleChangeSearch}
-            noLocation={noLocation}
-          />
-        </div>
-      )}
-      <div className={styles.rightWrapper}>
-        <BsFillHeartFill
-          onClick={
-            !isAuthenticated
-              ? () => {
+          {location.pathname === "/search" && (
+            <div onKeyDown={onKeyEnter}>
+              <Search
+                isMobile={false}
+                isSearchPage
+                onClick={onSearch}
+                size="small"
+                icon="search"
+                onChangeLocation={handleChangeLocation}
+                onChangeSearch={handleChangeSearch}
+                noLocation={noLocation}
+              />
+            </div>
+          )}
+          <div className={styles.rightWrapper}>
+            <BsFillHeartFill
+              onClick={
+                !isAuthenticated
+                  ? () => {
+                      loginWithRedirect({
+                        appState: {
+                          returnTo:
+                            window.location.pathname + window.location.search,
+                        },
+                      });
+                    }
+                  : () => navigate("/favorites")
+              }
+            />
+            <span />
+            {!isAuthenticated && (
+              <div
+                onClick={() =>
                   loginWithRedirect({
                     appState: {
                       returnTo:
                         window.location.pathname + window.location.search,
                     },
-                  });
+                  })
                 }
-              : () => navigate("/favorites")
-          }
-        />
-        <span />
-        {!isAuthenticated && (
-          <div
-            onClick={() =>
-              loginWithRedirect({
-                appState: {
-                  returnTo: window.location.pathname + window.location.search,
-                },
-              })
-            }
-          >
-            Log In
+              >
+                Log In
+              </div>
+            )}
+            {isAuthenticated && (
+              <div onClick={() => logoutWithRedirect()}>Log Out</div>
+            )}
           </div>
-        )}
-        {isAuthenticated && (
-          <div onClick={() => logoutWithRedirect()}>Log Out</div>
-        )}
-      </div>
+        </>
+      )}
+      {isMobile && !mobileNav && (
+        <>
+          <div className={styles.leftWrapperMobile}>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+          </div>
+          <div className={styles.rightWrapperMobile}>
+            <FiMenu
+              color="#525252"
+              onClick={() => dispatch(setMobileNav(true))}
+            />
+          </div>
+        </>
+      )}
+      {mobileNav && (
+        <MobileNav
+          loginWithRedirect={loginWithRedirect}
+          logoutWithRedirect={logoutWithRedirect}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
     </div>
   );
 };
