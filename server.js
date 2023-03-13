@@ -37,6 +37,6 @@ mongoose.connect(
   }
 );
 
-appVar.listen(portVar, () =>
+appVar.listen(portVar, host, () =>
   console.log(`Server listening on port ${portVar}`)
 );
