@@ -15,10 +15,22 @@
 .image {
     width: 100%;
     height: 100%;
-
+    display: flex;
+    justify-content: center;
 }
 
 .image > img {
-    width: 768px;
-    height: 432px;
+    max-width: 768px;
+    max-height: 432px;
+}
+
+@media screen and (max-width: 767px) {
+
+    .container > h1 {
+        font-size: 40px;
+    }
+
+    .image > img {
+        transform: scale(.4);
+    }
 }
