@@ -2,7 +2,15 @@
     padding: 24px;
     position: relative;
     display: flex;
+    width: 100%;
 }
+
+.containerMobile {
+    position: absolute;
+    top: 70px;
+    display: flex !important;
+}
+
 
 .animalsGrid {
     display: grid;
@@ -23,6 +31,10 @@
     padding: 24px;
     width: 70%;
     margin: 0 auto;
+}
+
+.paginationMobile {
+    width: 100%;
 }
 
 .gridWrapper {

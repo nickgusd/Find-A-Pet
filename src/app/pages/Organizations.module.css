@@ -5,6 +5,11 @@
     padding: 24px;
 }
 
+.containerMobile {
+    position: absolute;
+    top: 70px;
+}
+
 .orgsGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
