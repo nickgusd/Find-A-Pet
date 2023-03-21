@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import API from "../api/favoritesAPI";
@@ -13,8 +12,6 @@ export const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [deleted, setDeleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
-  const mobileStyle = isMobile ? styles.containerMobile : "";
   const { user = {}, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -39,7 +36,7 @@ export const Favorites = () => {
   };
 
   return (
-    <div className={`${styles.container} ${mobileStyle}`}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <h1>Favorites</h1>
       </div>

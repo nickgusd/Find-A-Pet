@@ -42,10 +42,7 @@ export const Search = () => {
   const location = useLocation();
   const params = queryString.parse(location.search);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1200 });
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
   const mobileNav = useAppSelector(isMobileNav);
-  const mobileStyle = isMobile ? styles.containerMobile : "";
-  const mobilePagination = isMobile ? styles.paginationMobile : "";
   
   useEffect(() => {
     setPage(Number(params.page));
@@ -137,7 +134,7 @@ export const Search = () => {
   };
 
   return (
-    <div className={`${styles.container} ${mobileStyle}`}>
+    <div className={styles.container}>
       <div
         className={`${styles.sidebarWrapper} ${
           isTabletOrMobile ? styles.sidebarMobile : ""
@@ -197,7 +194,7 @@ export const Search = () => {
               )
             )}
         </div>
-        <div className={`${styles.pagination} ${mobilePagination}`}>
+        <div className={styles.pagination}>
           <PaginationComponent
             totalPages={pagination.total_pages}
             onChange={onPageChange}

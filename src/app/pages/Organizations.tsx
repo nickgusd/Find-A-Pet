@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { getOrganizations } from "../slice/organizationsSlice";
 import queryString from "query-string";
@@ -26,8 +25,6 @@ export const Organizations = () => {
   const params = queryString.parse(location.search);
   const { organizations, pagination } = selectOrgs;
   const isLoading = loadingOrgs === "loading";
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
-  const mobileStyle = isMobile ? styles.containerMobile : "";
 
   useEffect(() => {
     dispatch(
@@ -49,7 +46,7 @@ export const Organizations = () => {
   };
 
   return (
-    <div className={`${styles.container} ${mobileStyle}`}>
+    <div className={styles.container}>
       {isLoading && (
         <div className={styles.loaderWrapper}>
           <LoaderComponent />
