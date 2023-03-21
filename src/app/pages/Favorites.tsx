@@ -16,6 +16,7 @@ export const Favorites = () => {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
   const mobileStyle = isMobile ? styles.containerMobile : "";
   const { user = {}, isAuthenticated } = useAuth0();
+  
 
   useEffect(() => {
     if (user.sub) {
