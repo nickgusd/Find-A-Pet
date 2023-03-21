@@ -1,5 +1,11 @@
 .container {
     padding: 24px;
+    width: 100%;
+}
+
+.containerMobile {
+    position: absolute;
+    top: 70px;
 }
 
 .grid {
