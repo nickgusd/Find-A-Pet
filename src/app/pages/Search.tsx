@@ -29,7 +29,6 @@ import styles from "./Search.module.css";
 
 export const Search = () => {
   const { animals, pagination } = useAppSelector(selectAnimals);
-  // const types = useAppSelector(selectTypes);
   const isLoadingAnimals = useAppSelector(loadingAnimals);
   const isLoadingTypes = useAppSelector(loadingTypes);
   const isLoadingBreeds = useAppSelector(loadingBreeds);
@@ -42,10 +41,9 @@ export const Search = () => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const location = useLocation();
   const params = queryString.parse(location.search);
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1200 });
   const mobileNav = useAppSelector(isMobileNav);
-  // const isSmallMobile = useMediaQuery({ maxWidth: 768 });
-
+  
   useEffect(() => {
     setPage(Number(params.page));
     dispatch(
@@ -158,13 +156,13 @@ export const Search = () => {
             <FilterBar />
           </div>
         )}
-        <div className={styles.animalsGrid}>
-          {!animals.length && (
+        {!animals.length && (
             <NoResults
               header={"No Results Found!"}
               content={"Please try searching again!"}
             />
           )}
+        <div className={styles.animalsGrid}>
           {animals.length > 0 &&
             animals.map(
               (item: {

@@ -3,19 +3,22 @@
 }
 
 .container > img {
-    width: 885px;
-    height: 500px;
+    max-width: 885px;
+    max-height: 500px;
 }
 
 .imageWrapper {
     position: relative;
     text-align: center;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .imageWrapper > img {
-    width: 885px;
-    height: 500px;
+    max-width: 885px;
+    max-height: 500px;
 }
 
 .textWrapper {
@@ -26,6 +29,18 @@
 
 .textWrapper > h1 {
     font-size: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+    .imageWrapper > img {
+       transform: scale(.5);
+    }
+    .textWrapper {
+        left: calc(50% - 114px);
+    }
+    .textWrapper > h1 {
+        font-size: 28px;
+    }
 }
 
 
