@@ -32,7 +32,9 @@ export const Navbar = () => {
   const [mouse, setMouse] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 1024 });
   const mobileNav = useAppSelector(isMobileNav);
-
+  const mobileFixedNavLocations = ["/search", "/organizations", "/favorites"]
+  const mobileStyle = isMobile ? styles.containerMobileHome : ""
+  
   const params = {
     type: searchValue,
     location: locationValue,
@@ -118,8 +120,8 @@ export const Navbar = () => {
   return (
     <div
       className={`${styles.container} ${
-        isMobile ? styles.containerMobile : ""
-      }`}
+        isMobile && mobileFixedNavLocations.includes(location.pathname) ? styles.containerMobile : ""
+      } ${mobileStyle}`}
     >
       {!isMobile && (
         <>

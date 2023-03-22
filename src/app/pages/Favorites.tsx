@@ -13,6 +13,7 @@ export const Favorites = () => {
   const [deleted, setDeleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user = {}, isAuthenticated } = useAuth0();
+  
 
   useEffect(() => {
     if (user.sub) {
