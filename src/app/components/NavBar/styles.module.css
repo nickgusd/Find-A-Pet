@@ -12,6 +12,9 @@
 
 .containerMobile {
     padding: 24px;
+    position: fixed;
+    width: 100%;
+    background-color: white;
 }
 
 .containerMobileHome {
