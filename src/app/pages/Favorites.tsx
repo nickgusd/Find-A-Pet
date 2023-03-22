@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useMediaQuery } from "react-responsive";
 
 import API from "../api/favoritesAPI";
 import { AnimalCard } from "../components/AnimalCard/AnimalCard";
@@ -13,6 +14,8 @@ export const Favorites = () => {
   const [deleted, setDeleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user = {}, isAuthenticated } = useAuth0();
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 });
+  const mobileStyle = isTabletOrMobile ? styles.containerMobile : "";
   
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export const Favorites = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${mobileStyle}`}>
       <div className={styles.header}>
         <h1>Favorites</h1>
       </div>

@@ -43,6 +43,8 @@ export const Search = () => {
   const params = queryString.parse(location.search);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1200 });
   const mobileNav = useAppSelector(isMobileNav);
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
+  const mobileStyle = isMobile ? styles.containerMobile : "";
   
   useEffect(() => {
     setPage(Number(params.page));
@@ -134,7 +136,7 @@ export const Search = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${mobileStyle}`}>
       <div
         className={`${styles.sidebarWrapper} ${
           isTabletOrMobile ? styles.sidebarMobile : ""

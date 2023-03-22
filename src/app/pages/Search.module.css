@@ -2,6 +2,13 @@
     padding: 24px;
     position: relative;
     display: flex;
+    width: 100%;
+}
+
+.containerMobile {
+    position: absolute;
+    top: 70px;
+    background-color: white;
 }
 
 .animalsGrid {
@@ -81,6 +88,10 @@
     .container {
         justify-content: center;
     }
+    
+    .pagination {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -88,9 +99,5 @@
         grid-template-columns: 1fr;
         justify-items: center;
     }
-
-    .container {
-        display: unset;
-    }
-   
+       
 }

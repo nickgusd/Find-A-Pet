@@ -5,6 +5,12 @@
     padding: 24px;
 }
 
+.containerMobile {
+    position: absolute;
+    top: 70px;
+    background-color: white;
+}
+
 .orgsGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -21,6 +27,7 @@
 
 .pagination {
     padding: 24px;
+    margin-bottom: 50px;
 }
 
 

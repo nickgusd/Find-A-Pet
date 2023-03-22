@@ -15,6 +15,13 @@
     position: relative;
 }
 
+@media screen and (max-width: 1024px) {
+    .container {
+        overflow: unset;
+    }
+
+}
+
 @media screen and (max-width: 282px) {
     .container {
         width: 100%;
