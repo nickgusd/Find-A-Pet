@@ -16,6 +16,10 @@
     position: fixed;
 }
 
+.containerMobileHome {
+    padding: 24px;
+}
+
 .leftWrapper {
     display: flex;
     flex-direction: flex-start;
