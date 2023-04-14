@@ -15,7 +15,7 @@ export const MobileNav = ({
   return (
     <div className={styles.mobileNav}>
       <div className={styles.close}>
-        <Link to="/">
+        <Link to="/" onClick={() => dispatch(setMobileNav(false))}>
           <img src={logo} alt="logo" />
         </Link>
         <AiOutlineClose
@@ -40,8 +40,8 @@ export const MobileNav = ({
             Log In
           </div>
         )}
-        <Link to="/organizations">Organizations</Link>
-        <Link to="/favorites">Favorites</Link>
+        <Link to="/organizations" onClick={() => dispatch(setMobileNav(false))}>Organizations</Link>
+        <Link to="/favorites" onClick={() => dispatch(setMobileNav(false))}>Favorites</Link>
       </div>
     </div>
   );
