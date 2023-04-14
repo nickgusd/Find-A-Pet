@@ -47,6 +47,19 @@
     padding: 14px 40px 0px;
 }
 
+.email {
+    color: #4183c4;
+    cursor: pointer;
+}
+
+.notProvided {
+    color: inherit;
+}
+
+.notProvided:hover {
+    color: inherit;
+}
+
 @media screen and (max-width: 1024px) {
     .contentWrapper {
         width: 100%;

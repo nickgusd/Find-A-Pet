@@ -11,6 +11,11 @@ export const ContactCard = ({ org = {} }: any) => {
   const { facebook, twitter, instagram, pintrest, youtube } =
     org?.social_media || {};
   const isOrgPage = location.pathname === "/organizations";
+  const handleClick = () => {
+    if (org.email) {
+      window.open(`mailto:${org.email}`)
+    }
+  }
 
   return (
     <div
@@ -30,7 +35,7 @@ export const ContactCard = ({ org = {} }: any) => {
             <b>
               <p> Email: </p>
             </b>
-            <p>{org.email || "Not provided"}</p>
+            <p  className={org.email ? styles.email : ""} onClick={handleClick}>{org.email || "Not provided"}</p>
             <b>
               <p>Address:</p>
             </b>
@@ -59,7 +64,7 @@ export const ContactCard = ({ org = {} }: any) => {
             <b>
               <p>Website:</p>
             </b>
-            <a href={org.website} target="_blank" rel="noreferrer">
+            <a className={org.website ? "" : styles.notProvided} href={org.website} target="_blank" rel="noreferrer">
               {org.website || "Not provided"}
             </a>
           </div>
