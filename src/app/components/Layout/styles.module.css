@@ -11,16 +11,15 @@
     height: 100vh;
     padding: 0px;
     margin: 0px;
-    overflow: auto;
+    /* overflow: auto; */
     position: relative;
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
     .container {
         overflow: unset;
     }
-
-}
+} */
 
 @media screen and (max-width: 282px) {
     .container {
