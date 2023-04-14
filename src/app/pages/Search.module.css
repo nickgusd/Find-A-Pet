@@ -86,7 +86,7 @@
         column-gap: 64px;
     }
     .container {
-        justify-content: center;
+        display: block;
     }
     
     .pagination {
